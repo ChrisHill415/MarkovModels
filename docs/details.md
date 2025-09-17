@@ -202,3 +202,56 @@ Just like in `SimpleMarkovModel`, the `getFollows` method takes
 a `List<String>` object `context` as a parameter and should return a `List` of all the words (containing `String` objects) that follow the `context` in the training text. However, the `HashMarkovModel` implementation *must* be more efficient, as it should *not* loop over the training text, but should instead *simply lookup the context `List<String>` in the `myMap` instance variable intialized during `processTraining()`*, or return an empty `List` if the `context` is not a key in the map. 
 
 *This means that the `getFollows` method will be O(1) instead of O(N) where N is the size of the training text.*
+
+## JUnit Testing in P1-Markov-GenAI
+
+To help test your `SimpleMarkovModel` and `HashMarkovModel` implementations, you are given some *unit tests* in the class
+`MarkovGenerateTest.java`  located in the `src` folder. 
+A unit test specifies a given input and asserts an expected outcome of running a method, 
+then runs your code to confirm that the expected outcome occurs. You can see the exact tests inside of 
+a Unit-test files, though it may be difficult to read/understand. the JUnit library used by these testing classes is a very 
+widely-used industry standard for unit testing.
+
+Note that by default, `MarkovGenerateTest` is testing the `BaseMarkovModel` implementation, but all
+tests will fail since `getFollows` is note implemented. When you are ready to test your `HashMarkovModel` implementation, 
+you will want to change which model is created in the `getModel` method of `MarkovGenerateTest` at the position shown in the screenshow 
+below (if the image does not render for you, you can find them in the `figures` folder). You will also make similar modifications
+to the code in `Chat201Test` since that class includes test methods that will test how your `WordGram` class works with both `Base` and `Hash` Models.
+
+
+<div align="center">
+  <img src="figures/getmodel.png">
+</div>
+
+
+In order **to run these tests** inside VS Code, click the [Test Explorer](https://code.visualstudio.com/docs/java/java-testing#_test-explorer) (beaker) 
+icon on the left side of VS Code (it should be the lowest icon on the panel). You can expand the arrow 
+for `p1-markov-genai` and the default package to see the unit test: `MarkovGenerateTest` (some text may be cut off).
+ You can click the run triangle next to each test package to run the tests. 
+ See the screenshot example below. *Note that JUnit programs are run by the JUnit library and the beaker-icon, not be running them as Java programs.* 
+ You'll run the tests by clicking the triangle in the left panel, and you'll see the results in the _Test Results_ window 
+ rather than in the Terminal or Debugger window in VSCode.
+
+For example, you can test all the tests in `MarkovGenerateTest` by hovering over that label in the _TestExplorer_ panel 
+which is active when you click the Beaker-Icon, and is shown in the screenshot below. You can also run each individual 
+unit test by hovering and clicking on each test's run triangle. The results of the tests are in the VSCode _TEST RESULTS_ panel, 
+not in the other panels where output is shown. Deciphering error JUnit error messages is not always straightforward -- 
+but when the tests pass? You'll get all green.
+
+<div align="center">
+  <img src="figures/markovtest.png">
+</div>
+
+
+
+The main benefit of JUnit tests lies in their ability to examine isolated "units" of code — that is, to check correctness of a segment with minimal reliance on other relevant code and data. Additionally, the purpose of supplying these *local* (on your own machine) tests is to allow you to catch potential problems quickly without needing to rely on the (somewhat slower) Gradescope autograder until you are reasonably confident in your code. You do not have to use them for a grade.
+
+<details>
+<summary>Expand for optional JUnit details</summary>
+
+We use a major Java library called [**JUnit**](https://junit.org/junit5/) (specifically version 5) for creating and running these unit tests. 
+It is not part of the standard Java API, so we have supplied the requisite files `JAR` files (Java ARchive files) along with this project in a folder 
+called `lib` (you don't need to do anything with this).   
+
+</details
+
