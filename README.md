@@ -1,4 +1,4 @@
-# Project 1: Base Markov, Fall 2025
+# Project 1.1: SimpleMarkov, Project 1.2 HashMarkov, Fall 2025
 
 This is the high-level project document for Project P1-Markov-GenAI in CompSci 201 at Duke University, Fall 2025.
 
