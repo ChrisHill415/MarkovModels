@@ -239,7 +239,7 @@ not in the other panels where output is shown. Deciphering error JUnit error mes
 but when the tests pass? You'll get all green.
 
 <div align="center">
-  <img src="figures/markovtest.png">
+  <img src="figures/matkovtest.png">
 </div>
 
 
