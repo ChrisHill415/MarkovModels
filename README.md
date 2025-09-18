@@ -43,7 +43,7 @@ You can see Shannon's ideas expressed in the so-called [_Infinite Monkey Theorem
 [1940 New Yorker story called by Russell Maloney](https://www.newyorker.com/magazine/1940/02/03/inflexible-logic). For four engagement points, read this short story and 
 the Wikipedia article linked above and answer the questions in the form: https://forms.cloud.microsoft/r/UbNXEm1cDT. You must indicate that you 
 actually read, and did not ask an LLM to summarize
-(you will know whether that's true).
+(you will know whether that's true). *This early engagement must be completed by the early submission/bonus deadline*.
 
 
 This assignment has its roots in a Nifty Assignment designed by Joe Zachary from U. Utah, assignments from Princeton designed by 
