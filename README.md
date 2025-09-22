@@ -30,7 +30,8 @@ questions accessible via this form: [https://forms.cloud.microsoft/r/UbNXEm1cDT]
 You don't need to read these references to do the project, but you do to earn six engagement points
  *without looking at or writing code*! 
 
-This assignment has its roots in several places. The true mathematical roots are from a 1948 monolog by Claude Shannon, [A Mathematical Theory of Communication](https://docs.google.com/viewer?a=v&pid=sites&srcid=ZGVmYXVsdGRvbWFpbnxtaWNyb3JlYWRpbmcxMmZhbGx8Z3g6MThkYzkwNzcyY2U5M2U5Ng) which discusses in detail the mathematics and intuition behind this assignment. In particular, the `BaseMarkovModel` uses the approach Shannon describes below:
+This assignment has its roots in several places. The true mathematical roots are from a 1948 monolog by Claude Shannon, 
+[A Mathematical Theory of Communication](https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf) which discusses in detail the mathematics and intuition behind this assignment. In particular, the `BaseMarkovModel` uses the approach Shannon describes below:
 
 > To construct [a Markov model of order 1], for example, one opens a book at random and selects a letter at random on the page. 
 This letter is recorded. The book is then opened to another page and one reads until this letter is encountered. The succeeding 
