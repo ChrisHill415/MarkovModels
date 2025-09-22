@@ -189,6 +189,10 @@ are is some information about total number of words (and the number of files in 
 |twofiles | 2 | 56,392 |
 | hesse | 3 | 149,532|
 
+*Note*: these are the _actual_ number of words in each folder. The markov model sequences will report *more* than these, depending on the order of the
+model, because each file has `<START><START> ... <START>` and corresponding `<END>` tags inserted. The differences don't matter when
+analyzing using O-notation.
+
 ### Question 1 (4 points)
 
 The code prints the size of the training text and how long it takes to train and to generate random text using the simple markov model
