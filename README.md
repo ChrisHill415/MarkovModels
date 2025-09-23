@@ -25,8 +25,7 @@ project youll be creating what are reasonably and historically called _small lan
 
 ### Historical details of this assignment (optional, Engagement points)
 
-The historical and literary references below can be read for optional enagagement points by filling out the
-questions accessible via this form: [https://forms.cloud.microsoft/r/UbNXEm1cDT](https://forms.cloud.microsoft/r/UbNXEm1cDT). 
+The historical and literary references below can be read for optional enagagement points by filling out the questions accessible via this form **by the end of Tuesday 9/23**: [https://forms.cloud.microsoft/r/UbNXEm1cDT](https://forms.cloud.microsoft/r/UbNXEm1cDT). 
 You don't need to read these references to do the project, but you do to earn six engagement points
  *without looking at or writing code*! 
 
