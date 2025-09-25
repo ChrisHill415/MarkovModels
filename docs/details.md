@@ -102,7 +102,7 @@ Of course, for a very small training text these probabilities may not be very me
 - Some static variables used in the main method are defined at the top of class, namely:
   - `TEXT_SIZE` is the number of words to be randomly generated.
   - `RANDOM_SEED` is the random seed used to initialize the random number generator. You should always get the same random text given a particular random seed and training text.
-  - `MODEL_ORDER` is the order of `WordGram`s that will be used.
+  - `MODEL_ORDER` is the order of `List<String>`s that will be used.
   - `PRINT_MODE` can be set to true or false based on whether you want the random text generated to be printed.
   - The `filename` defined at the beginning of the main method determines the file that will be used for the training text. 
 By default it is set to `data/alice.txt`, meaning the text of *Alice in Wonderland* is being used. Note that data files are located inside the data folder.
@@ -146,7 +146,7 @@ Note that you are *NOT GIVEN* a starting .java file for `HashMarkovModel.java`.
 
 However, you will need a `HashMap` instance variable that maps from `List<String>` values (the keys) to `List<String>` (the values). You may find this useful:
 ```
-    private HashMap<WordGram,List<String>> myMap;
+    private HashMap<List<String>,List<String>> myMap;
 ```
 
 ### constructors
