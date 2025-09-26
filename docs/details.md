@@ -179,11 +179,12 @@ For each `List<String>` of size `k`, where `k` is the order of the `HashMarkov` 
 
  Your code *must create an `ArrayList` value to assign to each key in the map*, the `ArrayList` holds all the "next" words.
 
-You'll create an initial context `List<String>` object from the first `myOrder` words, then start at the String that getFollows
-this context. This String may be added to `myMap`, but it will become part of the next context which you will create
+You'll create an initial context `List<String>` object from the first `myOrder` words. The word following this _context_
+should be added to the `List<String>` that's the value of the context in the map since this is a _following word/token_.
+this context. This next word/token_ will become part of the next context which you will create
 by calling `createNewContext`.
 
-are after those first strings. You'll find code very similar to this in the `SimpleMarkovModel` 
+You'll find code very similar to this in the `SimpleMarkovModel` 
 method `getFollows` since some of that logic now moves into the the `HashMarkovModel` method `processTraining`. 
 When your code looks up a context `List<String> `as a key in the `HashMap` instance variable 
 your code will create a new `ArrayList` as the value associated with that key the first time the context occurs. 
