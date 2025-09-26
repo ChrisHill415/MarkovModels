@@ -16,11 +16,11 @@ in that document and you'll want to test your code with the `JUnit` tests.
 Random Markov processes are widely used in Computer Science and in analyzing different forms of data. This project offers an 
 occasionally amusing look at a *generative AI model* for creating realistic looking text in a data-driven way by training a model. 
 You'll build a simple, almost brute force model as Project 1.1,
-continue to build on this project with a more efficient version as Project 1.2, and then a classification problem
+continue to build on this project with a more efficient version as Project 1.2, and then with a classification problem
 after training models as Project 2.
 
 Generative models of the sort you will build are of great interest to researchers in artificial intelligence and machine learning generally, and especially those in the field of *natural language processing* (the use of algorithmic and statistical AI/ML techniques on human language). One recent and powerful example of such text-generation model via statistical machine learning program is the [OpenAI GPT project](https://openai.com/blog/chatgpt). In this
-project youll be creating what are reasonably and historically called _small language models_ as opposed to the _large language models_ 
+project you'll be creating what are reasonably and historically called _small language models_ as opposed to the _large language models_ 
 (LLMs) behind ChatGPT, Claude, Gemini, and more.
 
 ### Historical details of this assignment (optional, Engagement points)
@@ -60,12 +60,12 @@ Your goal is to create two working versions of the code started in the `BaseMark
 new class `SimpleMarkovModel` for part 1.1. You'll build on this code with 
 a more efficient version `HashMarkovModel` in part 1.2 for 201.
 
-Summary:
-    - fork and clone (or download zip) the project files
-    - run ChatGPTDriver which uses the provided `BaseMarkovModel` class (and fails)
-    - design, implement, test `SimpleMarkovModel` which uses brute-force to generate text (P1.1)
-    - design, implement, test `HashMarkovModel`which does this more efficiently (P1.2)
-    - answer analysis questions (can do after p1.1 and after p1.2 or ...)
+Here is a summary of what you will do in this project:
+- fork and clone (or download zip) the project files
+- run ChatGPTDriver which uses the provided `BaseMarkovModel` class (and fails)
+- design, implement, test `SimpleMarkovModel` which uses brute-force to generate text (P1.1)
+- design, implement, test `HashMarkovModel`which does this more efficiently (P1.2)
+- answer analysis questions (can do after p1.1 and after p1.2 or ...)
 
 
 ## Running Driver Code
@@ -123,8 +123,8 @@ to you at meals, comfort your bed, And this fair
 
 You'll develop code in one class for this first part: `SimpleMarkovModel`. This has a corresponding JUnit testing program. See
 the [details document](docs/details.md) for information on how to run `JUnit` tests in VSCode and how to read the test results. 
-You should *absolutely* make sure your code passes these tests when writing each method, e.g., before coding the next
-method: For example, after coding `getFollows` you should use JUnit to
+You should *absolutely* make sure your code passes these tests when writing each method, i.e., before coding the next
+method. For example, after coding `getFollows` you should use JUnit to
 run the tests in `MarkovGenerateTest`. See the [details document](docs/details.md) for *how to run these tests.*
 
 ## Coding Part 1: Developing the SimpleMarkovModel Class
@@ -138,7 +138,7 @@ See the `BaseMarkovModel` class and the [details document](docs/details.md) for 
 
 The `Chat201Driver` sets a `RANDOM_SEED` to initialize the random number generator. You are welcome to change that value to experiment 
 and play around with different random generations of text, but you should be sure to set it to 1234 for testing/submitting. 
-Note that *if you use the same value for `RANDOM_SEED` you should get the same random text as other students.
+Note that *if you use the same value for `RANDOM_SEED` you should get the same random text as other students*.
 If not, something is likely wrong with your implementation.
 
 You can also test your `SimpleMarkovModel` class with the `MarkovGenerateTest` [JUnit tests](#junit-tests). 
@@ -164,7 +164,7 @@ We will include a template file for submitting your answers.
 
 ### Working Together for Analysis
 
-You're *stronlgy encouraged* to work with others in 201 in completing the analysis section for this project. 
+You're *strongly encouraged* to work with others in 201 in completing the analysis section for this project. 
 In future projects you'll work on an entire project in pairs, and submit once for the pair. For this project, however, 
 each person should submit independently. If you actively work with one or more people in 201, *please make sure* you list each other 
 in the analysis document you turn in. 
@@ -181,23 +181,23 @@ are is some information about total number of words (and the number of files in 
 |file    |# files| # total words|
 |--------|---------------|--------------|
 |shakespeare | 8 | 177,642 |
-|melvill e| 4 | 419,777|
+|melville| 4 | 419,777|
 |cbronte | 3 | 466,027|
 |twain | 5 | 516,074|
 |onefile | 1 | 28,196|
 |twofiles | 2 | 56,392 |
-| hesse | 3 | 149,532|
+|hesse| 3 | 149,532|
 
-*Note*: these are the _actual_ number of words in each folder. The markov model sequences will report *more* than these, depending on the order of the
+*Note*: these are the _actual_ number of words in each folder. The Markov model sequences will report *more* than these, depending on the order of the
 model, because each file has `<START><START> ... <START>` and corresponding `<END>` tags inserted. The differences don't matter when
 analyzing using O-notation.
 
 ### Question 1 (4 points)
 
-The code prints the size of the training text and how long it takes to train and to generate random text using the simple markov model
+The code prints the size of the training text and how long it takes to train and to generate random text using the simple Markov model
 embodied in `SimpleMarkovModel`. Copy/paste the sizes and times using different training texts
 
-What is the asymptotic (big O) runtime complexity of each of the methods: `trainDirectory()` `generate()` for the `SimpleMarkovModel`
+What is the asymptotic (big O) runtime complexity of each of the methods `trainDirectory()` and `generate()` for the `SimpleMarkovModel`
  implementation in terms of $`N`$ and $`T`$? State your answers, and justify them in *both* of the following ways.
 
 - *Theory*. Explain why you expect `trainDirectory()` in `SimpleMarkovModel` and `generate()` from `SimpleMarkovModel` 
@@ -249,7 +249,7 @@ and machine learning (ML) called *generative models* for *natural language proce
 GPT is not, however, open-source, meaning that the underlying source code of the model is not freely available and the model is only 
 accessible via API calls. Read this [short article from Nature about DeepSeek, an open-source LLM](docs/deepseek-nature.pdf). 
 
-Answer both of the following related questions:
+Answer the following related questions:
 - What do you think of OpenAI's stated mission? In particular, do you think that "highly autonomous systems that outperform humans at most economically valuable work" can benefit all of humanity? Why or why not?
 - What is the main message from the Nature article about DeepSeek and other models?
 - What questions/areas (you must have at least one) would you like to know more about? 
