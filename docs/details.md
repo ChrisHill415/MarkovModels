@@ -14,21 +14,21 @@ we recommend that you periodically (perhaps when completing a method or small se
 ## Coding in Project P1: Markov
 
 When you fork and clone the project, **make sure you open the correct project folder in VS Code** 
-following the [This document details the workflow](https://coursework.cs.duke.edu/201fall25/resources-201/-/blob/main/projectWorkflow.md).
+following [this document detailing the workflow](https://coursework.cs.duke.edu/201fall25/resources-201/-/blob/main/projectWorkflow.md).
 
 ## Java Background 
 
-For completing p1.1 and p1.2 knowing some Java concepts will be helpful.
+For completing P1.1 and P1.2 knowing some Java concepts will be helpful.
 
 ### What is an immutable List<String> for this project?
 
 The sequence of words used to generate random text in this (and the next) project is represented in code by an immutable `List<String>`. 
-The size of the lists used is the order of the Markov Model. The lists are immutable so that your code cannot inadvertantly change
+The size of the lists used is the order of the Markov Model. The lists are immutable so that your code cannot inadvertently change
 them. This will be important in Project 2, which uses the same `BaseMarkovModel` class.
 
 Several methods return an immutable list: `createNewContext`, `getSequence`, and `getRandomContext`. 
 
-See the code in [`BaseMarkov`](src/BaseMarkovModel.java) for details, each
+See the code in [`BaseMarkov`](src/BaseMarkovModel.java) for details. Each
 method uses `List.copyOf` to create what is essentially an immutable `ArrayList`.
 
 
@@ -65,7 +65,7 @@ the last k-1 words from the previous k-gram and
 the newly generated word by calling the method `createNewContext`. 
 Continue in that fashion to create the desired number of random words. 
 
-Here is a concrete example. Suppose we are using an order 2 Markov model with the following training text (located in `testfile.txt`):
+Here is a concrete example. Suppose we are using an order-2 Markov model with the following training text (located in `testfile.txt`):
 
 ```
 this is a test
@@ -104,12 +104,12 @@ Of course, for a very small training text these probabilities may not be very me
   - `RANDOM_SEED` is the random seed used to initialize the random number generator. You should always get the same random text given a particular random seed and training text.
   - `MODEL_ORDER` is the order of `List<String>`s that will be used.
   - `PRINT_MODE` can be set to true or false based on whether you want the random text generated to be printed.
-  - The `filename` defined at the beginning of the main method determines the file that will be used for the training text. 
-By default it is set to `data/alice.txt`, meaning the text of *Alice in Wonderland* is being used. Note that data files are located inside the data folder.
-- A `BaseMarkovModel` object named `model` is created. By default, it uses `BaseMarkovModel` as the implementing class, a complete implementation of which is provided in the starter code. Later on, when you have developed `HashMarkovModel`, you can comment out the line using `BaseMarkovModel` and uncomment the line using `SimpleMarkovModel` to change which implementation you use.
+  - The `dirname` defined at the beginning of the main method determines the file that will be used for the training text. 
+By default it is set to `data/shakespeare`, meaning the text of eight works of Shakespeare is being used. Note that data files are located inside the data folder.
+- A `BaseMarkovModel` object named `model` is created. By default, it uses `BaseMarkovModel` as the implementing class, a complete implementation of which is provided in the starter code. Later on, when you have developed `SimpleMarkovModel`, you can comment out the line using `BaseMarkovModel` and uncomment the line using `SimpleMarkovModel` to change which implementation you use.
 - The `model` then sets the specified random seed. You should get the same result on multiple runs with the same random seed. Feel free to change the seed for fun while developing and running, but *the random seed should be set to 1234 as in the default when submitting for grading*.
 - The `model` is timed in how long it takes to run two methods: first `model.trainText()` and then the method `model.generate()`.
-- Finally, values are printed: The random text itself if `PRINT_MODE` is set to true and the time it took to train (that is, for `trainText()` to run) the Markov model and to generate random text using the model (that is, for `generate` to run). 
+- Finally, values are printed: The random text itself if `PRINT_MODE` is set to true, and the time it took to train (that is, for `trainText()` to run) the Markov model and to generate random text using the model (that is, for `generate` to run). 
 
 ## The SimpleMarkovModel
 
@@ -130,7 +130,7 @@ After this line include any code needed to initialize any instance variables you
 
 You must implement `getFollows` to find and return a `List<String>` that contains each individual string that getFollows
 the parameter `List<String> context`. See the examples at the beginning of this document for details. You'll find
-every order-k (where k is `myOrder`) sequence in the instance varaible `mySequence` using the `subList` method and
+every order-k (where k is `myModelSize`) sequence in the instance variable `myWordSequence` using the `subList` method and
 compare it for equality with `context`, building the returned `ArrayList` with Strings that follow
 the `context`. You can model the code you write on `BaseMarkovModel.differentContexts` which finds every order-k subsequence
 and stores them in a local `HashSet` variable. 
@@ -163,7 +163,7 @@ You'll also need to assign to the `HashMap` private instance variable.
 
 You'll need to implement the `processTraining` method (which was not necessary in `SimpleMarkovModel`). This method
 is called in `BaseMarkovModel` as the last line of both `trainDirectory` and `trainText`. In `HashMarkovModel` the
-code you write will populate (*after clearing*) the instance varaible `myMap`.
+code you write will populate (*after clearing*) the instance variable `myMap`.
 
 Note: you *must clear the `HashMap` instance variable* (for example, if the name of the variable is `myMap`, 
 you can do this by calling `myMap.clear();`). This ensures that the map does not contain stale data if `processTraining()` 
@@ -179,16 +179,14 @@ For each `List<String>` of size `k`, where `k` is the order of the `HashMarkov` 
 
  Your code *must create an `ArrayList` value to assign to each key in the map*, the `ArrayList` holds all the "next" words.
 
-You'll create an initial context `List<String>` object from the first `myOrder` words. The word following this _context_
-should be added to the `List<String>` that's the value of the context in the map since this is a _following word/token_.
-this context. This next word/token_ will become part of the next context which you will create
+You'll create an initial context `List<String>` object from the first `myModelSize` words. The word following this _context_
+should be added to the `List<String>` that's the value of the context in the map since this is a _following word/token_ of this context. This next _word/token_ will become part of the next context which you will create
 by calling `createNewContext`.
 
-You'll find code very similar to this in the `SimpleMarkovModel` 
-method `getFollows` since some of that logic now moves into the the `HashMarkovModel` method `processTraining`. 
-When your code looks up a context `List<String> `as a key in the `HashMap` instance variable 
+You'll find code very similar to this in the `SimpleMarkovModel` method `getFollows` since some of that logic now moves into the the `HashMarkovModel` method `processTraining`. 
+When your code looks up a context `List<String>` as a key in the `HashMap` instance variable, 
 your code will create a new `ArrayList` as the value associated with that key the first time the context occurs. 
-Then your code wil call `myMap.get(context).add(str)` where `str` is the string that occurs after the `context`. 
+Then your code will call `myMap.get(context).add(str)` where `str` is the string that occurs after the `context`. 
 Note that the values in the `HashMap` have type `List<String>`, but you'll create new `ArrayList` objects 
 (since `List` is an interface).
 
@@ -210,14 +208,14 @@ To help test your `SimpleMarkovModel` and `HashMarkovModel` implementations, you
 `MarkovGenerateTest.java`  located in the `src` folder. 
 A unit test specifies a given input and asserts an expected outcome of running a method, 
 then runs your code to confirm that the expected outcome occurs. You can see the exact tests inside of 
-a Unit-test files, though it may be difficult to read/understand. the JUnit library used by these testing classes is a very 
+a Unit-test file, though it may be difficult to read/understand. The JUnit library used by these testing classes is a very 
 widely-used industry standard for unit testing.
 
 Note that by default, `MarkovGenerateTest` is testing the `BaseMarkovModel` implementation, but all
-tests will fail since `getFollows` is note implemented. When you are ready to test your `HashMarkovModel` implementation, 
+tests will fail since `getFollows` is not implemented. When you are ready to test your `HashMarkovModel` implementation, 
 you will want to change which model is created in the `getModel` method of `MarkovGenerateTest` at the position shown in the screenshow 
 below (if the image does not render for you, you can find them in the `figures` folder). You will also make similar modifications
-to the code in `Chat201Test` since that class includes test methods that will test how your `WordGram` class works with both `Base` and `Hash` Models.
+to the code in `Chat201Driver` since that class includes test methods.
 
 
 <div align="center">
@@ -229,7 +227,7 @@ In order **to run these tests** inside VS Code, click the [Test Explorer](https:
 icon on the left side of VS Code (it should be the lowest icon on the panel). You can expand the arrow 
 for `p1-markov-genai` and the default package to see the unit test: `MarkovGenerateTest` (some text may be cut off).
  You can click the run triangle next to each test package to run the tests. 
- See the screenshot example below. *Note that JUnit programs are run by the JUnit library and the beaker-icon, not be running them as Java programs.* 
+ See the screenshot example below. *Note that JUnit programs are run by the JUnit library and the beaker-icon, do not be running them as Java programs.* 
  You'll run the tests by clicking the triangle in the left panel, and you'll see the results in the _Test Results_ window 
  rather than in the Terminal or Debugger window in VSCode.
 
