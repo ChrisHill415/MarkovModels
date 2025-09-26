@@ -162,7 +162,7 @@ You'll also need to assign to the `HashMap` private instance variable.
 ### The processTraining() method
 
 You'll need to implement the `processTraining` method (which was not necessary in `SimpleMarkovModel`). This method
-is called in `BaseMarkovModel` as the line line of both `trainDirectory` and `trainText`. In `HashMarkovModel` the
+is called in `BaseMarkovModel` as the last line of both `trainDirectory` and `trainText`. In `HashMarkovModel` the
 code you write will populate (*after clearing*) the instance varaible `myMap`.
 
 Note: you *must clear the `HashMap` instance variable* (for example, if the name of the variable is `myMap`, 
