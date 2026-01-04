@@ -1,6 +1,6 @@
-# Project 1.1: SimpleMarkov, Project 1.2 HashMarkov, Fall 2025
+# Project 1.1: SimpleMarkov, Project 1.2 HashMarkov, Spring 2026.
 
-This is the high-level project document for Project P1-Markov-GenAI in CompSci 201 at Duke University, Fall 2025.
+This is the high-level project document for Project P1-Markov-GenAI in CompSci 201 at Duke University, Spring 2026.
 
 See [the details document](docs/details.md) for information on using Git, starting the project, 
 and more details about the project including information about the classes and concepts 
@@ -169,7 +169,7 @@ In future projects you'll work on an entire project in pairs, and submit once fo
 each person should submit independently. If you actively work with one or more people in 201, *please make sure* you list each other 
 in the analysis document you turn in. 
 
-*For your analysis repsonses* [please use this template](https://coursework.cs.duke.edu/201fall25/p1-markov-fall2025/-/blob/main/docs/p1-markov-analysis.docx?ref_type=heads).
+*For your analysis repsonses* [please use this template](https://coursework.cs.duke.edu/201spring2026/p1-markov-fall2025/-/blob/main/docs/p1-markov-analysis.docx?ref_type=heads).
 
 ### Big-O/O-notation for analysis questions
 
