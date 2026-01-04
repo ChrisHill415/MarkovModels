@@ -1,20 +1,20 @@
 ## Starter Code and Using Git
 
 **_You should have installed all software (Java, Git, VS Code) before completing this project._** You can find 
-the [directions for installation here](https://coursework.cs.duke.edu/201spring2026/resources-201/-/blob/main/installingSoftware.md) (including workarounds for submitting without Git if needed).
+the [directions for installation here](https://coursework.cs.duke.edu/201spring26/resources-201/-/blob/main/installingSoftware.md) (including workarounds for submitting without Git if needed).
 
 We'll be using Git and the installation of GitLab at [coursework.cs.duke.edu](https://coursework.cs.duke.edu). All code for classwork will be kept here. Git is software used for version control, and GitLab is an online repository to store code in the cloud using Git.
 
 For this project, you **start with the URL linked to course calendar**, 
 [https://coursework.cs.duke.edu/201spring26/p1-markov-spring2026](https://coursework.cs.duke.edu/201spring26/p1-markov-spring2026).
 
-**[This document details the workflow](https://coursework.cs.duke.edu/201spring2026/resources-201/-/blob/main/projectWorkflow.md) for downloading the starter code for the project, updating your code on coursework using Git, and ultimately submitting to Gradescope for autograding.** We recommend that you read and follow the directions carefully this first time working on a project! While coding, 
+**[This document details the workflow](https://coursework.cs.duke.edu/201spring26/resources-201/-/blob/main/projectWorkflow.md) for downloading the starter code for the project, updating your code on coursework using Git, and ultimately submitting to Gradescope for autograding.** We recommend that you read and follow the directions carefully this first time working on a project! While coding, 
 we recommend that you periodically (perhaps when completing a method or small section) push your changes as explained in Section 5.
 
 ## Coding in Project P1: Markov
 
 When you fork and clone the project, **make sure you open the correct project folder in VS Code** 
-following [this document detailing the workflow](https://coursework.cs.duke.edu/201spring2026/resources-201/-/blob/main/projectWorkflow.md).
+following [this document detailing the workflow](https://coursework.cs.duke.edu/201spring26/resources-201/-/blob/main/projectWorkflow.md).
 
 ## Java Background 
 
