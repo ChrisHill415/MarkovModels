@@ -211,6 +211,10 @@ then runs your code to confirm that the expected outcome occurs. You can see the
 a Unit-test file, though it may be difficult to read/understand. The JUnit library used by these testing classes is a very 
 widely-used industry standard for unit testing.
 
+We use a major Java library called [**JUnit**](https://junit.org/junit5/) (specifically version 5) for creating and running these unit tests. 
+It is not part of the standard Java API, so we have supplied the requisite files `JAR` files (Java ARchive files) along with this project in a folder 
+called `lib` (you don't need to do anything with this).  
+
 Note that by default, `MarkovGenerateTest` is testing the `BaseMarkovModel` implementation, but all
 tests will fail since `getFollows` is not implemented. When you are ready to test your `HashMarkovModel` implementation, 
 you will want to change which model is created in the `getModel` method of `MarkovGenerateTest` at the position shown in the screenshow 
@@ -244,13 +248,7 @@ but when the tests pass? You'll get all green.
 
 
 The main benefit of JUnit tests lies in their ability to examine isolated "units" of code — that is, to check correctness of a segment with minimal reliance on other relevant code and data. Additionally, the purpose of supplying these *local* (on your own machine) tests is to allow you to catch potential problems quickly without needing to rely on the (somewhat slower) Gradescope autograder until you are reasonably confident in your code. You do not have to use them for a grade.
+ 
 
-<details>
-<summary>Expand for optional JUnit details</summary>
 
-We use a major Java library called [**JUnit**](https://junit.org/junit5/) (specifically version 5) for creating and running these unit tests. 
-It is not part of the standard Java API, so we have supplied the requisite files `JAR` files (Java ARchive files) along with this project in a folder 
-called `lib` (you don't need to do anything with this).   
-
-</details
 
