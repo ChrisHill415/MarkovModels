@@ -16,7 +16,7 @@ in that document and you'll want to test your code with the `JUnit` tests.
 Random Markov processes are widely used in Computer Science and in analyzing different forms of data. This project offers an 
 occasionally amusing look at a *generative AI model* for creating realistic looking text in a data-driven way by training a model. 
 You'll build a simple, almost brute force model as Project 1.1,
-continue to build on this project with a more efficient version as Project 1.2, and then with a classification problem
+continue to build on this project with a more efficient version as Project 1.2, and then program and deal with a classification problem
 after training models as Project 2.
 
 Generative models of the sort you will build are of great interest to researchers in artificial intelligence and machine learning generally, and especially those in the field of *natural language processing* (the use of algorithmic and statistical AI/ML techniques on human language). One recent and powerful example of such text-generation model via statistical machine learning program is the [OpenAI GPT project](https://openai.com/blog/chatgpt). In this
@@ -37,11 +37,11 @@ This letter is recorded. The book is then opened to another page and one reads u
 letter is then recorded. Turning to another page this second letter is searched for and the succeeding letter recorded, etc. It would be 
 interesting if further approximations could be constructed, but the labor involved becomes enormous at the next stage.
 
-(See early *two engagement points*, find something interesting about Claude Shannon: https://forms.cloud.microsoft/r/UbNXEm1cDT. 
+(See early *two engagement points*, find something interesting about Claude Shannon: https://forms.cloud.microsoft/r/0qeehgjPCe. 
 
 You can see Shannon's ideas expressed in the so-called [_Infinite Monkey Theorem_](https://en.wikipedia.org/wiki/Infinite_monkey_theorem) which, in turn, is the basis for a somewhat amusing or arguably disturbing short story named _Inflexible Logic_ now found in pages 91-98 from [_Fantasia Mathematica (Google Books)_](http://books.google.com/books?id=9Xw8tMEmXncC&printsec=frontcover&pritnsec=frontcover#PPA91,M1) and reprinted from a 
 [1940 New Yorker story called by Russell Maloney](https://www.newyorker.com/magazine/1940/02/03/inflexible-logic). For four engagement points, read this short story and 
-the Wikipedia article linked above and answer the questions in the form: https://forms.cloud.microsoft/r/UbNXEm1cDT. You must indicate that you 
+the Wikipedia article linked above and answer the questions in the (same as above) form: https://forms.cloud.microsoft/r/0qeehgjPCe. You must indicate that you 
 actually read, and did not ask an LLM to summarize
 (you will know whether that's true). *This early engagement must be completed by the early submission/bonus deadline*.
 

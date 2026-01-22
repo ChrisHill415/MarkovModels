@@ -18,7 +18,7 @@ following [this document detailing the workflow](https://coursework.cs.duke.edu/
 
 ## Java Background 
 
-For completing P1.1 and P1.2 knowing some Java concepts will be helpful.
+For completing P1.1 and P1.2 knowing the Java concepts described below will be helpful. 
 
 ### What is an immutable List<String> for this project?
 
@@ -26,7 +26,7 @@ The sequence of words used to generate random text in this (and the next) projec
 The size of the lists used is the order of the Markov Model. The lists are immutable so that your code cannot inadvertently change
 them. This will be important in Project 2, which uses the same `BaseMarkovModel` class.
 
-Several methods return an immutable list: `createNewContext`, `getSequence`, and `getRandomContext`. 
+Several methods in the class `BaseMarkovModel` return an immutable list: `createNewContext`, `getSequence`, and `getRandomContext`. 
 
 See the code in [`BaseMarkov`](src/BaseMarkovModel.java) for details. Each
 method uses `List.copyOf` to create what is essentially an immutable `ArrayList`.
