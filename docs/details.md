@@ -113,27 +113,26 @@ By default it is set to `data/shakespeare`, meaning the text of eight works of S
 
 ## The SimpleMarkovModel
 
-You'll implement the class `SimpleMarkovModel` to extend `BaseMarkovModel`. This means it _inherits_ the methdods and `protected` instance 
-variables from that class. You're given a starting .java file that has constructors, but is missing one key method.
+You'll implement the class `SimpleMarkovModel` to extend `BaseMarkovModel`. This means it _inherits_ the methods and `protected` instance 
+variables from that class. You're given a starting .java file that has constructors, but is missing one important method.
 
 ### Constructors
 
-You'll need to implement two constructors that correspond to the two constructors in `BaseMarkovModel`. In
-the class you write, you'll include a *default* consructor that has the same body as the default constructor
+Two constructors in `SimpleMarkovModel` correspond to the two constructors in `BaseMarkovModel`. These include a *default* consructor that has the same body as the default constructor
 in `BaseMarkovModel`. Your parameterized constructor must have as its first line
 ```
    super(size);
 ```
-After this line include any code needed to initialize any instance variables you add.
+After this line include any code needed to initialize each instance variables you add (if any).
 
 ### getFollows
 
-You must implement `getFollows` to find and return a `List<String>` that contains each individual string that getFollows
-the parameter `List<String> context`. See the examples at the beginning of this document for details. You'll find
+You must implement `getFollows` to find and return a `List<String>` that contains each individual string that follows _immediately after_
+the parameter `List<String> context` in the training text. See the examples at the beginning of this document for details. You'll find
 every order-k (where k is `myModelSize`) sequence in the instance variable `myWordSequence` using the `subList` method and
 compare it for equality with `context`, building the returned `ArrayList` with Strings that follow
-the `context`. You can model the code you write on `BaseMarkovModel.differentContexts` which finds every order-k subsequence
-and stores them in a local `HashSet` variable. 
+the `context`. This means you find every context that *has a string that follows it*! You can model the code you write on `BaseMarkovModel.differentContexts` which finds every order-k subsequence
+and stores them in a local `HashSet` variable --- think carefully about whether the last context has a following string. It mya help to use concrete numbers: if `myWordSequence` has 10 elements, indexed 0-9. Then the last order-2 context is the values at indexes 8 and 9. The last order-2 context with a string that follows is at indexes 7 and 8, with the string at index 9 following. 
 
 You may choose to implement other methods inherited as part of answering analysis questions.
 
@@ -169,7 +168,7 @@ Note: you *must clear the `HashMap` instance variable* (for example, if the name
 you can do this by calling `myMap.clear();`). This ensures that the map does not contain stale data if `processTraining()` 
 is called multiple times on different training texts.
 
-You should loop through the words in `myWordSequence` *exactly once*. 
+You should loop through the words in `myWordSequence` *exactly once*.
 For each `List<String>` of size `k`, where `k` is the order of the `HashMarkov` model, 
  you'll use the `List<String>` as a key, and add the String that follow it as an entry in the`ArrayList` object 
  that's the value associated with that `key` -- note that in the explanation above you'll see `List<String>` 
@@ -179,9 +178,8 @@ For each `List<String>` of size `k`, where `k` is the order of the `HashMarkov` 
 
  Your code *must create an `ArrayList` value to assign to each key in the map*, the `ArrayList` holds all the "next" words.
 
-You'll create an initial context `List<String>` object from the first `myModelSize` words. The word following this _context_
-should be added to the `List<String>` that's the value of the context in the map since this is a _following word/token_ of this context. This next _word/token_ will become part of the next context which you will create
-by calling `createNewContext`.
+ There are at least two code fragments on which you can model the code you're writing in `processTraining`. Both rely on using a loop eerily similar to the loop you wrote in `SimpleMarkovModel.getFollows` which found every context.  As in that code, you can use `subList` to create a context. Alternatively, you could create the first context explicitly before any loop using `myWordSequence.subList(0,myModelSize)`. Then, in the body of your loop, you can create the next context by calling `createNewContext` as is done in `BaseMarkov.generate`.
+
 
 You'll find code very similar to this in the `SimpleMarkovModel` method `getFollows` since some of that logic now moves into the the `HashMarkovModel` method `processTraining`. 
 When your code looks up a context `List<String>` as a key in the `HashMap` instance variable, 
@@ -189,9 +187,6 @@ your code will create a new `ArrayList` as the value associated with that key th
 Then your code will call `myMap.get(context).add(str)` where `str` is the string that occurs after the `context`. 
 Note that the values in the `HashMap` have type `List<String>`, but you'll create new `ArrayList` objects 
 (since `List` is an interface).
-
-As you loop over all strings, you'll change the `context` in the body of the loop by calling `createNewContext` 
-which creates a new immutable `List<String>` with the next-to-be-looped-over string after it. Think about that!
 
 
 ### The getFollows() method
