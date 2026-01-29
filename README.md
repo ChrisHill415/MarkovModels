@@ -25,7 +25,7 @@ project you'll be creating what are reasonably and historically called _small la
 
 ### Historical details of this assignment (optional, Engagement points)
 
-The historical and literary references below can be read for optional enagagement points by filling out the questions accessible via this form **by the end of Thursday 2/25**: [[][https://forms.office.com/r/0qeehgjPCe](https://forms.office.com/r/0qeehgjPCe). This doesn't involve coding for the project, but you do to earn six engagement points
+The historical and literary references below can be read for optional enagagement points by filling out the questions accessible via this form **by the end of Thursday 2/25**: [https://forms.office.com/r/0qeehgjPCe](https://forms.office.com/r/0qeehgjPCe). This doesn't involve coding for the project, but you do to earn six engagement points
  *without looking at or writing code*! 
 
 This assignment has its roots in several places. The true mathematical roots are from a 1948 monolog by Claude Shannon, 
@@ -36,7 +36,7 @@ This letter is recorded. The book is then opened to another page and one reads u
 letter is then recorded. Turning to another page this second letter is searched for and the succeeding letter recorded, etc. It would be 
 interesting if further approximations could be constructed, but the labor involved becomes enormous at the next stage.
 
-(See early *two engagement points*, find something interesting about Claude Shannon: https://forms.cloud.microsoft/r/0qeehgjPCe. 
+(See early *two engagement points*, find something interesting about Claude Shannon: [https://forms.cloud.microsoft/r/0qeehgjPCe](https://forms.cloud.microsoft/r/0qeehgjPCe). 
 
 You can see Shannon's ideas expressed in the so-called [_Infinite Monkey Theorem_](https://en.wikipedia.org/wiki/Infinite_monkey_theorem) which, in turn, is the basis for a somewhat amusing or arguably disturbing short story named _Inflexible Logic_ now found in pages 91-98 from [_Fantasia Mathematica (Google Books)_](http://books.google.com/books?id=9Xw8tMEmXncC&printsec=frontcover&pritnsec=frontcover#PPA91,M1) and reprinted from a 
 [1940 New Yorker story called by Russell Maloney](https://www.newyorker.com/magazine/1940/02/03/inflexible-logic). For four engagement points, read this short story and 
@@ -77,7 +77,7 @@ because the code in `BaseMarkovModel` does *not* work. You'll change the object 
 a `SimpleMarkovModel` (uncomment the line for that) and after completing the code in `SimpleMarkovModel` this program
 should generate different output.
 
-Expand for example output of `Chat201Driver` with starter code using `BaseMarkovModel`.
+**Example output of `Chat201Driver` with starter code using `BaseMarkovModel`.**
 
 ```
 size of final sequence = 177690
@@ -92,7 +92,7 @@ zero size follows for [conditions,, but, unseal'd-]
 ```
 
 This throws an exception because the `Chat201Driver` code uses a `BaseMarkovModel` rather than the version 
-you'll write for P1.1: `SimpleMarkovModel`. 
+you'll write first: `SimpleMarkovModel`. 
 After you write that class and modify the code in `main` to use a `SimpleMarkovModel` you should see randomly-generated text.
 You're encouraged
 to explore `Chat201Driver` more closely to understand what it is doing. You will find details about the `Chat201Driver` class in the class 
@@ -118,7 +118,7 @@ to you at meals, comfort your bed, And this fair
 ```
 
 
-## JUnit Tests for both 1.1 and 1.2
+## JUnit Tests for both Models
 
 You'll develop code in one class for this first part: `SimpleMarkovModel`. This has a corresponding JUnit testing program. See
 the [details document](docs/details.md) for information on how to run `JUnit` tests in VSCode and how to read the test results. 
@@ -131,7 +131,7 @@ run the tests in `MarkovGenerateTest`. See the [details document](docs/details.m
 In this part you will develop a Markov model for generating random text by extending `BaseMarkovModel` to the class
 `SimpleMarkovModel`, and then using that in `Chat201Driver` to test the methods you have written.
 See the `BaseMarkovModel` class and the [details document](docs/details.md) for more complete information. The class
-`SimpleMarkovModel` has been started, you must complete it.
+`SimpleMarkovModel` has been started, you must complete it, test it, run it (for analysis section).
 
 ### Running and Testing SimpleMarkovModel
 
@@ -143,8 +143,7 @@ If not, something is likely wrong with your implementation.
 You can also test your `SimpleMarkovModel` class with the `MarkovGenerateTest` [JUnit tests](#junit-tests). 
 Don't forget you may need to edit the code in method `getModel` to return a `SimpleMarkovModel` implementation when running your tests.
 
-Once you are confident that your `SimpleMarkovModel` code is correct, you are ready to submit to Gradescope 
-for P1.1 and then move on to P1.2 and the analysis questions.
+Once you are confident that your `SimpleMarkovModel` code is correct, you are ready to continue with implementing `HashMarkovModel`.
 
 ## Coding Part 2: Developing the HashMarkovModel Class
 
@@ -168,7 +167,7 @@ In future projects you'll work on an entire project in pairs, and submit once fo
 each person should submit independently. If you actively work with one or more people in 201, *please make sure* you list each other 
 in the analysis document you turn in. 
 
-*For your analysis repsonses* [please use this template](https://coursework.cs.duke.edu/201spring26/p1-markov-spring2026/-/blob/main/docs/p1-markov-analysis.docx?ref_type=heads).
+*For your analysis repsonses* [please use this template](https://coursework.cs.duke.edu/201spring26/p1-markov-spring2026/-/blob/main/docs/p1-markov-analysis.docx).
 
 ### Big-O/O-notation for analysis questions
 
@@ -188,8 +187,7 @@ are is some information about total number of words (and the number of files in 
 |hesse| 3 | 149,532|
 
 *Note*: these are the _actual_ number of words in each folder. The Markov model sequences will report *more* than these, depending on the order of the
-model, because each file has `<START><START> ... <START>` and corresponding `<END>` tags inserted. The differences don't matter when
-analyzing using O-notation.
+model, because each file has `<START><START> ... <START>` and corresponding `<END>` tags inserted when training. The differences don't matter when analyzing using O-notation.
 
 ### Question 1 (4 points)
 
@@ -206,7 +204,7 @@ You may assume that `nextInt` is a constant time operation to generate a random 
 files takes `O(T)` time.
 
 - *Experiment*. Run the main method of `Chat201Driver` with *at least* 3 different data folders 
-of varying sizes $`T`$ (it is fine to use `alice.txt` for one of them). For each, run 
+of varying sizes $`T`$ (it is fine to use `data/onefile/alice.txt` for one of them). For each, run 
 the main method with *at least* 3 different values of `TEXT_SIZE` (which corresponds to $`N`$). 
 So you should have a total of at least 9 data points; use these to fill out a table like the one shown below.
  *Explain how your empirical data does or does not conform to your expectations for the runtime 
@@ -218,7 +216,7 @@ So you should have a total of at least 9 data points; use these to fill out a ta
 | ...          | ....     | ...      | ...                  | ...                    |
 
 *Suggestions*: You will likely get the clearest data if you include very different values for $`T`$ and $`N`$, 
-and preferably larger values -- see the table of sizes above to help you choose text files you'll use. 
+and preferably larger values -- see the table of sizes above to help you choose folders/text files you'll use. 
 You can set $`N`$ directly to much larger values by changing `TEXT_SIZE`, for example to 1,000 or 10,000. 
 When doing so, you can set `PRINT_MODE` to `false` in `Chat201Driver` to avoid having a large amount of text printed to your 
 terminal. Note that `SimpleMarkovModel` is not necessarily an efficient implementation, 
@@ -232,8 +230,8 @@ What is the asymptotic (big O) runtime complexity of the methods: `trainDirector
 and for the `generate` method when  a `HashMarkovModel` is used in terms of $`N`$ and $`T`$? 
 State your answers, and justify them in *theory and experiment* exactly as you did for Question 1. 
 
-You can use the same training texts and values for $`N`$ as you chose in question 1, w
-ith the same suggestions mentioned there. Note that, implemented correctly, `HashMarkovModel` 
+You can use the same training texts and values for $`N`$ as you chose in question 1, 
+with the same suggestions mentioned there. Note that, implemented correctly, `HashMarkovModel` 
 should be noticably more efficient at generating random text than `SimpleMarkovModel`, and this should be evident in your analysis.
 
 ### Question 3 (4 points)
@@ -242,13 +240,13 @@ Markov models like the one you implemented in this project are one example of a 
 and machine learning (ML) called *generative models* for *natural language processing*. Currently, one of the state-of-the-art models is 
  *GPT*, created by [OpenAI](https://openai.com/about/). OpenAI states that their 
  "mission is to ensure that artificial general intelligence---AI systems that are generally smarter than humans—benefits all of humanity."
- Note that in 2024 the model wording was different including: 
+ Note that in [2022](https://web.archive.org/web/20220619093030/https://openai.com/about/) the OpenAI wording was different including: 
  "highly autonomous systems that outperform humans at most economically valuable work—benefits all of humanity." 
 
 GPT is not, however, open-source, meaning that the underlying source code of the model is not freely available and the model is only 
 accessible via API calls. Read this [short article from Nature about DeepSeek, an open-source LLM](docs/deepseek-nature.pdf). 
 
-Answer the following related questions:
+Answer the following related questions **without using an LLM**:
 - What do you think of OpenAI's stated mission? In particular, do you think that "highly autonomous systems that outperform humans at most economically valuable work" can benefit all of humanity? Why or why not?
 - What is the main message from the Nature article about DeepSeek and other models?
 - What questions/areas (you must have at least one) would you like to know more about? 
@@ -261,7 +259,7 @@ There is no right or wrong answer to these questions; we are looking for one or 
 You will submit the assignment on Gradescope. You can access Gradescope through the tab on Canvas. 
 Please take note that changes/commits on GitLab are NOT automatically synced to Gradescope. 
 You are welcome to submit as many times as you like, only the most recent submission will count for a grade. You'll submit once
-for P1.1, once for P1.2, and once for analysis.
+for P1, and once for analysis.
 
 Don't forget to upload a PDF for the analysis part of this assignment and mark where you answer each question. This is a separate submission in Gradescope.
 
