@@ -25,8 +25,7 @@ project you'll be creating what are reasonably and historically called _small la
 
 ### Historical details of this assignment (optional, Engagement points)
 
-The historical and literary references below can be read for optional enagagement points by filling out the questions accessible via this form **by the end of Tuesday 9/23**: [https://forms.cloud.microsoft/r/UbNXEm1cDT](https://forms.cloud.microsoft/r/UbNXEm1cDT). 
-You don't need to read these references to do the project, but you do to earn six engagement points
+The historical and literary references below can be read for optional enagagement points by filling out the questions accessible via this form **by the end of Thursday 2/25**: [[][https://forms.office.com/r/0qeehgjPCe](https://forms.office.com/r/0qeehgjPCe). This doesn't involve coding for the project, but you do to earn six engagement points
  *without looking at or writing code*! 
 
 This assignment has its roots in several places. The true mathematical roots are from a 1948 monolog by Claude Shannon, 
@@ -43,29 +42,29 @@ You can see Shannon's ideas expressed in the so-called [_Infinite Monkey Theorem
 [1940 New Yorker story called by Russell Maloney](https://www.newyorker.com/magazine/1940/02/03/inflexible-logic). For four engagement points, read this short story and 
 the Wikipedia article linked above and answer the questions in the (same as above) form: https://forms.cloud.microsoft/r/0qeehgjPCe. You must indicate that you 
 actually read, and did not ask an LLM to summarize
-(you will know whether that's true). *This early engagement must be completed by the early submission/bonus deadline*.
+(you will know whether that's true). *This early engagement must be completed by the 2/5*.
 
 
 This assignment has its roots in a Nifty Assignment designed by Joe Zachary from U. Utah, assignments from Princeton designed by 
 Kevin Wayne and others, and the work done at Duke starting with Owen Astrachan and continuing with Jeff Forbes, Salman Azhar, Brandon Fain, 
 and the UTAs from Compsci 201.
 
-This new version is built for 201 in the Fall 2025 course offering and differs in *several details* from previous versions. This
+This new version is built for 201 in the Fall 2025 course offering and modified for Spring 2026 and differs in *several details* from previous versions. This
 means that using an LLM or previous solutions may not be relevant.
 
 
 ## General Work for this project
 
 Your goal is to create two working versions of the code started in the `BaseMarkovModel` class. As you'll see below, you'll call the 
-new class `SimpleMarkovModel` for part 1.1. You'll build on this code with 
-a more efficient version `HashMarkovModel` in part 1.2 for 201.
+new class `SimpleMarkovModel`. You'll build on this code with 
+a more efficient version `HashMarkovModel`.
 
 Here is a summary of what you will do in this project:
 - fork and clone (or download zip) the project files
 - run ChatGPTDriver which uses the provided `BaseMarkovModel` class (and fails)
-- design, implement, test `SimpleMarkovModel` which uses brute-force to generate text (P1.1)
-- design, implement, test `HashMarkovModel`which does this more efficiently (P1.2)
-- answer analysis questions (can do after p1.1 and after p1.2 or ...)
+- design, implement, test `SimpleMarkovModel` which uses brute-force to generate text
+- design, implement, test `HashMarkovModel`which does this more efficiently
+- answer analysis questions (you will need both models working)
 
 
 ## Running Driver Code
