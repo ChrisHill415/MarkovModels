@@ -25,7 +25,7 @@ project you'll be creating what are reasonably and historically called _small la
 
 ### Historical details of this assignment (optional, Engagement points)
 
-The historical and literary references below can be read for optional enagagement points by filling out the questions accessible via this form **by the end of Thursday 2/25**: [https://forms.office.com/r/0qeehgjPCe](https://forms.office.com/r/0qeehgjPCe). This doesn't involve coding for the project, but you do to earn six engagement points
+The historical and literary references below can be read for optional enagagement points by filling out the questions accessible via this form **by the end of Thursday 2/5**: [https://forms.office.com/r/0qeehgjPCe](https://forms.office.com/r/0qeehgjPCe). This doesn't involve coding for the project, but you do to earn six engagement points
  *without looking at or writing code*! 
 
 This assignment has its roots in several places. The true mathematical roots are from a 1948 monolog by Claude Shannon, 
