@@ -8,12 +8,11 @@ For complete project details including git, programming tasks, and analysis ques
 
 
 
-## Introduction
+## Concetptual and Historical Introduction
 
 Random Markov processes are widely used in Computer Science and in analyzing different forms of data. This project offers an 
 occasionally amusing look at a *generative AI model* for creating realistic looking text in a data-driven way by training a model. 
-You'll build a simple, almost brute force model as Project 1.1,
-continue to build on this project with a more efficient version as Project 1.2, and then program and deal with a classification problem
+You'll build a simple,  brute force model and a more efficient version as Project 1 and then program and deal with a classification problem
 after training models as Project 2.
 
 Generative models of the sort you will build are of great interest to researchers in artificial intelligence and machine learning generally, and especially those in the field of *natural language processing* (the use of algorithmic and statistical AI/ML techniques on human language). One recent and powerful example of such text-generation model via statistical machine learning program is the [OpenAI GPT project](https://openai.com/blog/chatgpt). In this
@@ -22,7 +21,7 @@ project you'll be creating what are reasonably and historically called _small la
 
 ### Historical details of this assignment (optional, Engagement points)
 
-The historical and literary references below can be read for optional enagagement points by filling out the questions accessible via this form **by the end of Sunday TBD**: [https://forms.office.com/r/0qeehgjPCe](https://forms.office.com/r/0qeehgjPCe). This doesn't involve coding for the project, but you do to earn six engagement points
+The historical and literary references below can be read for optional enagagement points by filling out the questions accessible via this form **by the end of Sunday TBD**: [https://forms.cloud.microsoft/r/FHVhBWV8Tu](https://forms.cloud.microsoft/r/FHVhBWV8Tu). This doesn't involve coding for the project, but you do earn six engagement points
  *without looking at or writing code*! 
 
 This assignment has its roots in several places. The true mathematical roots are from a 1948 monolog by Claude Shannon, 
@@ -33,11 +32,11 @@ This letter is recorded. The book is then opened to another page and one reads u
 letter is then recorded. Turning to another page this second letter is searched for and the succeeding letter recorded, etc. It would be 
 interesting if further approximations could be constructed, but the labor involved becomes enormous at the next stage.
 
-(See early *two engagement points*, find something interesting about Claude Shannon: [https://forms.cloud.microsoft/r/0qeehgjPCe](https://forms.cloud.microsoft/r/0qeehgjPCe). 
+(See early *two engagement points*, find something interesting about Claude Shannon: [https://forms.cloud.microsoft/r/FHVhBWV8Tu](https://forms.cloud.microsoft/r/FHVhBWV8Tu). 
 
 You can see Shannon's ideas expressed in the so-called [_Infinite Monkey Theorem_](https://en.wikipedia.org/wiki/Infinite_monkey_theorem) which, in turn, is the basis for a somewhat amusing or arguably disturbing short story named _Inflexible Logic_ now found in pages 91-98 from [_Fantasia Mathematica (Google Books)_](http://books.google.com/books?id=9Xw8tMEmXncC&printsec=frontcover&pritnsec=frontcover#PPA91,M1) and reprinted from a 
 [1940 New Yorker story called by Russell Maloney](https://www.newyorker.com/magazine/1940/02/03/inflexible-logic). For four engagement points, read this short story and 
-the Wikipedia article linked above and answer the questions in the (same as above) form: https://forms.cloud.microsoft/r/0qeehgjPCe. You must indicate that you 
+the Wikipedia article linked above and answer the questions in the (same as above) form: https://forms.cloud.microsoft/r/FHVhBWV8Tu. You must indicate that you 
 actually read, and did not ask an LLM to summarize
 (you will know whether that's true). *This early engagement must be completed by the 2/5*.
 
@@ -52,8 +51,14 @@ This new version of Markov leads into Project 2 which is Markov Classification. 
 ## General Work for this project
 
 Your goal is to create two working versions of the code started in the `BaseMarkovModel` class. As you'll see below, you'll call the 
-new class `SimpleMarkovModel`. You'll build on this code with 
-a more efficient version `HashMarkovModel`.
+new class `SimpleMarkovModel`. You'll build on this code with a more efficient version `HashMarkovModel`. The learning goals for this project include:
+
+- Understand _inheritance_ in object-oriented Java programs and the _is-a_ relationship.
+- Understand `Map` and `HashMap` and the basics of the abstract data type map or dictionary.
+- Understand Unit testing using the `JUnit` libraries.
+- Use both empirical and analtyical tests to measure performance.
+
+For details on how to proceed, see the [the _details_ document](docs/details.md).
 
 Here is a summary of what you will do in this project:
 - fork and clone (or download zip) the project files
