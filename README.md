@@ -1,14 +1,11 @@
-# Project 1.1: SimpleMarkov, Project 1.2 HashMarkov, Spring 2026.
+# Project 1.
 
-This is the high-level project document for Project P1-Markov-GenAI in CompSci 201 at Duke University, Spring 2026.
+This is the high-level project document for Project P1-Markov-GenAI in CompSci 201 at Duke University, Fall 2026.
 
-See [the details document](docs/details.md) for information on using Git, starting the project, 
-and more details about the project including information about the classes and concepts 
-that are outlined briefly below. 
+## Project Overview
 
-*You'll absolutely need to read the information* in the [details document](docs/details.md) to understand how the classes 
-in this project work independently and together. In particular, information about testing with `JUnit` is 
-in that document and you'll want to test your code with the `JUnit` tests.
+For complete project details including git, programming tasks, and analysis questions, see [the _details_ document](docs/details.md). This `README` document supplies a high-level overview of what the project is about.
+
 
 
 ## Introduction
@@ -25,7 +22,7 @@ project you'll be creating what are reasonably and historically called _small la
 
 ### Historical details of this assignment (optional, Engagement points)
 
-The historical and literary references below can be read for optional enagagement points by filling out the questions accessible via this form **by the end of Thursday 2/12**: [https://forms.office.com/r/0qeehgjPCe](https://forms.office.com/r/0qeehgjPCe). This doesn't involve coding for the project, but you do to earn six engagement points
+The historical and literary references below can be read for optional enagagement points by filling out the questions accessible via this form **by the end of Sunday TBD**: [https://forms.office.com/r/0qeehgjPCe](https://forms.office.com/r/0qeehgjPCe). This doesn't involve coding for the project, but you do to earn six engagement points
  *without looking at or writing code*! 
 
 This assignment has its roots in several places. The true mathematical roots are from a 1948 monolog by Claude Shannon, 
@@ -49,8 +46,7 @@ This assignment has its roots in a Nifty Assignment designed by Joe Zachary from
 Kevin Wayne and others, and the work done at Duke starting with Owen Astrachan and continuing with Jeff Forbes, Salman Azhar, Brandon Fain, 
 and the UTAs from Compsci 201.
 
-This new version is built for 201 in the Fall 2025 course offering and modified for Spring 2026 and differs in *several details* from previous versions. This
-means that using an LLM or previous solutions may not be relevant.
+This new version of Markov leads into Project 2 which is Markov Classification. That's new starting in Fall 2025 and continuing through this semester.
 
 
 ## General Work for this project
