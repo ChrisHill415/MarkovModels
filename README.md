@@ -4,11 +4,10 @@ This is the high-level project document for Project P1-Markov-GenAI in CompSci 2
 
 ## Project Overview
 
-For complete project details including git, programming tasks, and analysis questions, see [the _details_ document](docs/details.md). This `README` document supplies a high-level overview of what the project is about.
+For complete project details including git, programming tasks, and analysis questions, see [the _details_ document](docs/details.md). This `README` document supplies a high-level overview of what the project is about, including early engagement points.
 
 
-
-## Concetptual and Historical Introduction
+## Conceptual and Historical Introduction
 
 Random Markov processes are widely used in Computer Science and in analyzing different forms of data. This project offers an 
 occasionally amusing look at a *generative AI model* for creating realistic looking text in a data-driven way by training a model. 
@@ -59,7 +58,6 @@ new class `SimpleMarkovModel`. You'll build on this code with a more efficient v
 - Use both empirical and analtyical tests to measure performance.
 
 For details on how to proceed, see the [the _details_ document](docs/details.md).
-
 
 
 
