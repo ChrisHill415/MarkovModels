@@ -1,20 +1,12 @@
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.nio.file.*;
+import java.util.*;
+import java.util.stream.*;
 
 import compsci201.Ignore;
 
 /**
- * New version of BaseMarkovModel for 2025. Changes from previous
+ * New version of BaseMarkovModel originated fall 2025. Changes from previous
  * semesters: replace WordGram with immutable List<String>. This
  * Base class is no longer abstract, but method getFollow is intended
  * to be @Override(n) in classes like SimpleMarkovModel and HashMarkovModel.
@@ -29,6 +21,7 @@ import compsci201.Ignore;
  * 
  * @author Owen Astrachan
  * @version 3.0 for Compsci 201, Fall 2025
+ * @version 3.1 for Compsci 201, Fall 2026
  */
 
 public class BaseMarkovModel {
@@ -36,6 +29,7 @@ public class BaseMarkovModel {
     protected Random myRandom;
     protected List<String> myWordSequence;
     protected static final int RANDOM_INIT = 1234;
+    protected final static String START = "<START>";
     protected final static String END = "<END>";
 
     /**
@@ -48,9 +42,19 @@ public class BaseMarkovModel {
         myRandom = new Random();
     }
 
+    /**
+     * No param means use order-3 model
+     */
     public BaseMarkovModel(){
         this(3);
     }
+
+    /** 
+     * Break text into space separated words/tokens, return
+     * the list of words.
+     * @param text is white-space delimited text
+     * @return List<String> of separated words.
+     */
 
     protected List<String> tokenize(String text) {
         List<String> tokens = new ArrayList<>();
@@ -59,12 +63,19 @@ public class BaseMarkovModel {
         return tokens;
     }
 
+    /**
+     * Update instance variable myWordSequence with 
+     * words/tokens from parameter.  Add <START>* to
+     * beginning of tokenized text and <END>* to end
+     * as many times as the model of this MarkovModel
+     * @param text is whitespace delimited text
+     */
     protected void updateWordSequence(String text) {
         List<String> tokens = tokenize(text);
         List<String> padded = new ArrayList<>();
         
         for(int k=0; k < myModelSize; k++){
-            padded.add("<START>");
+            padded.add(START);
         }
 
         padded.addAll(tokens);
@@ -75,24 +86,45 @@ public class BaseMarkovModel {
         myWordSequence.addAll(padded);
     }
 
+    /**
+     * Add words/tokens to instance variable
+     * by calling protected method and then train
+     * @param text
+     */
     public void trainText(String text) {
         updateWordSequence(text);
         processTraining();
     }
 
+    /**
+     * Returns number of words/tokens in this model
+     * @return number of words/tokens in model
+     */
     public int tokenSize(){
         return myWordSequence.size();
     }
 
+    /**
+     * Return this model's order
+     * @return model's order
+     */
     public int getOrder(){
         return myModelSize;
     }
 
+    /**
+     * Nothing here but print statement, specialize in subclasses
+     */
     public void processTraining(){
         System.out.printf("size of final sequence = %d\n",myWordSequence.size());
     }
 
-    @Ignore
+   /**
+    * Read every file in folder specified by parameter and
+    * update internal sequence with words/tokens from each file
+    * @param dirName is name of folder containing text files
+    * @throws IOException if reading fails
+    */
     public void trainDirectory(String dirName) throws IOException {
         try (Stream<Path> paths = Files.walk(Paths.get(dirName))){
             List<Path> files = paths.filter(Files::isRegularFile)
@@ -106,6 +138,11 @@ public class BaseMarkovModel {
         }       
     }
 
+    /**
+     * Return immutable List<String> containing myOrder words/tokens
+     * chosen from random starting point
+     * @return immutable List<String> containing myOrder strings
+     */
      protected List<String> getRandomContext() {
         // 0 1 2 3 4 5 6: size = 7, 
         int index = myRandom.nextInt(myWordSequence.size()-myModelSize+1);
@@ -183,6 +220,11 @@ public class BaseMarkovModel {
         return context;
     }
 
+    /**
+     * Choose a random next string that follows context.
+     * @param context is myOrder list of Strings 
+     * @return a string that follows context, probabilistically
+     */
     public String randomNextString(List<String> context){
         List<String> followList = getFollows(context);
         if (followList.size() == 0) {
