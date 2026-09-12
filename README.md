@@ -11,24 +11,22 @@ For complete project details including git, programming tasks, and analysis ques
 
 Random Markov processes are widely used in Computer Science and in analyzing different forms of data. This project offers an 
 occasionally amusing look at a *generative AI model* for creating realistic looking text in a data-driven way by training a model. 
-You'll build a simple,  brute force model and a more efficient version as Project 1 and then program and deal with a classification problem
-after training models as Project 2.
+You'll build a simple,  brute force model and a more efficient version as Project 1 and then program and deal with a classification problem after training models as Project 2.
 
 Generative models of the sort you will build are of great interest to researchers in artificial intelligence and machine learning generally, and especially those in the field of *natural language processing* (the use of algorithmic and statistical AI/ML techniques on human language). One recent and powerful example of such text-generation model via statistical machine learning program is the [OpenAI GPT project](https://openai.com/blog/chatgpt). In this
-project you'll be creating what are reasonably and historically called _small language models_ as opposed to the _large language models_ 
-(LLMs) behind ChatGPT, Claude, Gemini, and more.
+project you'll be creating what are reasonably and historically called _small language models_ as opposed to the _large language models_ (LLMs) behind ChatGPT, Claude, Gemini, and more.
 
 ### Historical details of this assignment (optional, Engagement points)
 
-The historical and literary references below can be read for optional enagagement points by filling out the questions accessible via this form **by the end of Sunday TBD**: [https://forms.cloud.microsoft/r/FHVhBWV8Tu](https://forms.cloud.microsoft/r/FHVhBWV8Tu). This doesn't involve coding for the project, but you do earn six engagement points
+The historical and literary references below can be read for optional enagagement points by filling out the questions accessible via this form **by 11:59 pm Thursday 9/17**: [https://forms.cloud.microsoft/r/FHVhBWV8Tu](https://forms.cloud.microsoft/r/FHVhBWV8Tu). This doesn't involve coding for the project, but you do earn six engagement points
  *without looking at or writing code*! 
 
 This assignment has its roots in several places. The true mathematical roots are from a 1948 monolog by Claude Shannon, 
-[A Mathematical Theory of Communication](https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf) which discusses in detail the mathematics and intuition behind this assignment. In particular, the `BaseMarkovModel` uses the approach Shannon describes below:
+[A Mathematical Theory of Communication](https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf) which discusses in detail the mathematics and intuition behind this assignment. In particular, the `BaseMarkovModel` uses the approach Shannon describes below (for words rather than letters):
 
-> To construct [a Markov model of order 1], for example, one opens a book at random and selects a letter at random on the page. 
-This letter is recorded. The book is then opened to another page and one reads until this letter is encountered. The succeeding 
-letter is then recorded. Turning to another page this second letter is searched for and the succeeding letter recorded, etc. It would be 
+> To construct [a Markov model of order 1], for example, one opens a book at random and selects a word at random on the page. 
+This letter is recorded. The book is then opened to another page and one reads until this word is encountered. The succeeding 
+word is then recorded. Turning to another page this second word is searched for and the succeeding word recorded, etc. It would be 
 interesting if further approximations could be constructed, but the labor involved becomes enormous at the next stage.
 
 (See early *two engagement points*, find something interesting about Claude Shannon: [https://forms.cloud.microsoft/r/FHVhBWV8Tu](https://forms.cloud.microsoft/r/FHVhBWV8Tu). 
@@ -37,7 +35,7 @@ You can see Shannon's ideas expressed in the so-called [_Infinite Monkey Theorem
 [1940 New Yorker story called by Russell Maloney](https://www.newyorker.com/magazine/1940/02/03/inflexible-logic). For four engagement points, read this short story and 
 the Wikipedia article linked above and answer the questions in the (same as above) form: https://forms.cloud.microsoft/r/FHVhBWV8Tu. You must indicate that you 
 actually read, and did not ask an LLM to summarize
-(you will know whether that's true). *This early engagement must be completed by the 2/5*.
+(you will know whether that's true). *This early engagement must be completed by the 9/17.
 
 
 This assignment has its roots in a Nifty Assignment designed by Joe Zachary from U. Utah, assignments from Princeton designed by 
@@ -49,8 +47,7 @@ This new version of Markov leads into Project 2 which is Markov Classification. 
 
 ## General Work for this project
 
-Your goal is to create two working versions of the code started in the `BaseMarkovModel` class. As you'll see below, you'll call the 
-new class `SimpleMarkovModel`. You'll build on this code with a more efficient version `HashMarkovModel`. The learning goals for this project include:
+Your goal is to create two working versions of the code started in the `BaseMarkovModel` class. As you'll see below, you'll complete the class `SimpleMarkovModel`. You'll build on this code with a more efficient version `HashMarkovModel`. The learning goals for this project include:
 
 - Understand _inheritance_ in object-oriented Java programs and the _is-a_ relationship.
 - Understand `Map` and `HashMap` and the basics of the abstract data type map or dictionary.
