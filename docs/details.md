@@ -1,7 +1,7 @@
 
 # Details for P1-Markov, Fall 2026
 
-You should have already read the [README](../README.md) file to get an overview of the project. The details here are designed to explain the classes you're given, the code you'll write, and the implementation details.
+You should have already read the [README](../README.md) file to get an overview of the project. The details here are needed to explain the classes you're given, the code you'll write, and the implementation details.
 
 ## Starter Code and Using Git
 **_You should have installed all software (Java, Git, VS Code) before completing this project._** You can find 
@@ -15,14 +15,18 @@ For this project, you **start with the URL linked to course calendar**, [https:/
 
 Here is a summary of what you will do in this project:
 - fork and clone (or download zip) the project files
-- run ChatGPTDriver which uses the provided `BaseMarkovModel` class (and fails)
+- run ChatGPTDriver which uses the provided `SimpleMarkovModel` class (and fails)
 - design, implement, test `SimpleMarkovModel` which uses brute-force to generate text
 - design, implement, test `HashMarkovModel`which does this more efficiently
 - answer analysis questions (you will need both models working)
 
 ## Java Background 
 
-For completing P1, knowing the Java concepts described below will be helpful. 
+For completing P1, the Java concepts described below will be helpful. Understanding these may help you in completing the implementation of `SimpleMarkovModel` that is the first part of Project 1.
+
+### Basic Inheritance
+
+You've seen a brief introduction to the class `Object` that is the base class for every Java class. Classes in Java can _overload_ inherited methods `toString` and `equals` as was seen in `Person201` from Project 0. In this project, you'll write `SimpleMarkovModel` by overloading one method inherited from `BaseMarkovModel` and using the other methods without changing them from `BaseMarkovModel`.
 
 ### What is an immutable List<String> for this project?
 
@@ -53,19 +57,21 @@ and
 ## What is a Markov Model?
 
 Markov models are random models with the Markov property. In this project you can think of the Markov Model as a _small language model_. 
-You've likely heard about Duke/ChatGPT, Claude, Gemini and other _large language models_. In our case, we want to create a Markov model 
+You've heard about Duke/ChatGPT, Claude, Gemini and other _large language models_. In our case, we want to create a Markov model 
 for generating random text that looks similar to a training text. Your code will generate one random word at a time, and the 
 Markov property in our context means that the probabilities for that next word will be based on the previous words -- 
 more precisely on 3 previous words in an order-3 Markov Model and the `k` previous words in an order-`k` Markov model.
 
 An order-k Markov model uses length-three `List<String>` contexts to predict text: we sometimes call these *k-grams* where *k* 
-refers to the order. 
-To begin, we select a random k-gram from the *training text* (the data we use to create our model by calling the 
-method `getRandomText`; we want to generate random text based on the training text). Then, we look for instances of that k-gram 
-in the training text to calculate the probabilities corresponding to words that might follow the context. 
-We then generate a new word according to these probabilities, after which we repeat the process using 
-the last k-1 words from the previous k-gram and 
-the newly generated word by calling the method `createNewContext`. 
+refers to the order. To generate random text based on a training model the following steps occur in the method `BaseMarkov.generate`:
+
+ - select a random k-gram _context_ from the *training text* (the data we use to create our model by calling the 
+method `getRandomContext`; we want to generate random text based on the training text).
+ - look for instances of that k-gram  in the training text to calculate the probabilities corresponding to words that might follow the context by calling the method `randomNextString` which calls the method `getFollows` **which you must implement in `SimpleMarkovModel` **.
+ - repeat the process with a new context by calling `createNewContext` which uses the last k-1 words from the previous context and 
+the newly generated word. 
+
+
 Continue in that fashion to create the desired number of random words. 
 
 Here is a concrete example. Suppose we are using an order-2 Markov model with the following training text:
@@ -85,15 +91,12 @@ and for the other words is 1/5 or 20%. To generate a random word following the 2
 we would therefore choose `ok` with 2/5 probability, or `only`, `a`, or `short` with 1/5 probability each.
 
 Rather than calculating these probabilities explicitly, your code will use these probabilities implicitly. 
-In particular, the `SimpleMarkovModel.getFollows` method you write must return a `List<String>` of *all* of the words that follow after a 
-given k-gram in the training text (including duplicates). This list is used by the method `BaseMarkovModel.generate` to choose 
-one of these words uniformly at random. 
+In particular, the `SimpleMarkovModel.getFollows` method you write must return a `List<String>` of *all* of the words that follow after a given context in the training text (including duplicates). This list is used by the method `BaseMarkovModel.randomNextString` to choose one of these words uniformly at random. 
 Words that more commonly follow will be selected with higher probability by virtue of these words being duplicated in the `List<String>`. 
 In our example above with `[it is]` the `getFollows` method would return the `List<String>` `["only", "a", "ok", "short", "ok"]`.
 
 Suppose your code chooses `ok` as the next random word. Then the random text generated so far is `it is ok`, and the current
-context `List<String>` of order 2 we are using would be updated to `[is, ok]` --- by dropping the `it` and adding `ok` (by calling `createNewContext` 
-with the existing context and the chosen word).
+context `List<String>` of order 2 we are using would be updated to `[is, ok]` --- by dropping the `it` and adding `ok` (by calling `createNewContext` with the existing context and the chosen word).
 
 We then again find the following words in the training text, and so on and so forth, until we have generated the desired number of random words.
 
@@ -110,10 +113,10 @@ Of course, for a very small training text these probabilities may not be very me
   - `PRINT_MODE` can be set to true or false based on whether you want the random text generated to be printed.
   - The `dirname` defined at the beginning of the main method determines the folder/files that will be used for the training text. 
 By default it is set to `data/shakespeare`, meaning the text of eight works of Shakespeare is being used. Note that data files are located inside the data folder.
-- A `BaseMarkovModel` object named `model` is created. By default, it uses `BaseMarkovModel` as the implementing class, a complete implementation of which is provided in the starter code. Later, when you have developed `SimpleMarkovModel`, you can comment out the line using `BaseMarkovModel` and uncomment the line using `SimpleMarkovModel` to change which implementation is used/timed.
+- A `BaseMarkovModel` object named `model` is created. By default, it uses `SimpleMarkovModel` as the implementing class, a partial implementation of which is provided in the starter code.
 - The `model` then sets the specified random seed. You should get the same result on multiple runs with the same random seed. Feel free to change the seed for fun while developing and running, but *the random seed should be set to 1234 as in the default when submitting for grading*.
 - The `model` is timed in how long it takes to run two methods: first `model.trainDirectory()` and then the method `model.generate()`.
-- Finally, values are printed: The random text itself if `PRINT_MODE` is set to true, and the time it took to train (that is, for `trainText()` to run) the Markov model and to generate random text using the model (that is, for `generate` to run). 
+- Finally, values are printed: the time it took to train (that is, for `trainText()` to run) the Markov model and to generate random text using the model (that is, for `generate` to run). The first and last 100 words generated are printed as well by calling the method `printNicely`.
 
 ### Running Driver Code
 
@@ -121,38 +124,33 @@ The primary driver code for this assignment is located in `Chat201Driver.java`. 
 the `public static void main` method of `Chat201Driver` 
 immediately after cloning the starter code, and should see something like the output shown below (noting that your exact 
 runtimes will likely be different / machine dependent). Note that *there is no random text generated* 
-because the code in `BaseMarkovModel` does *not* work. You'll change the object returned by the method `getModel` to return
-a `SimpleMarkovModel` (uncomment the line for that) and after completing the code in `SimpleMarkovModel` this program
-should generate different output.
+because the code in `BaseMarkovModel.getFollows` does *not* work. After completing the code in `SimpleMarkovModel.getFollows` this program should generate different output.
 
-**Example output of `Chat201Driver` with starter code using `BaseMarkovModel`.**
+**Example output of `Chat201Driver` with starter code.**
 
 ```
 size of final sequence = 177690
 
-Trained on text data/shakespeare with # tokens = 177690
+Trained on text data/shakespeare with # tokens = 177674
 Training time = 0.101 seconds
 Exception in thread "main" java.lang.RuntimeException: 
-zero size follows for [conditions,, but, unseal'd-]
-        at BaseMarkovModel.randomNextString(BaseMarkovModel.java:190)
-        at BaseMarkovModel.generate(BaseMarkovModel.java:212)
+zero size follows for [Fates,, we]
+        at BaseMarkovModel.randomNextString(BaseMarkovModel.java:232)
+        at BaseMarkovModel.generate(BaseMarkovModel.java:254)
         at Chat201Driver.main(Chat201Driver.java:43)
 ```
 
-This throws an exception because the `Chat201Driver` code uses a `BaseMarkovModel` rather than the version 
-you'll write first: `SimpleMarkovModel` and in `BaseMarkovModel` the method `getFollows` returns an empty list. You'll change this when
-you complete `SimpleMarkovModel`. 
+This throws an exception because the `Chat201Driver` code uses a `SimpleMarkovModel`and the inherited `BaseMarkovModel.getFollows` returns an empty list. You'll change this when you complete `SimpleMarkovModel`. 
 
 
 ## Coding Part 1: Developing the SimpleMarkovModel Class
 
-In this part you will develop a Markov model for generating random text by extending `BaseMarkovModel` to the class
+In this part you will develop a Markov model for generating random text by extending `BaseMarkovModel` in the class
 `SimpleMarkovModel`, and then using that class in `Chat201Driver` to test the methods you have written.
-The class
-`SimpleMarkovModel` has been started, you must complete it, test it, run it (for analysis section).
+The class `SimpleMarkovModel` has been started, you must complete it by overriding and implementing `getFollows`, test it, run it (for analysis section).
 
 
-After you implement and test `SimpleMarkovModel` and modify the code in `Chat201Driver.main` to use a `SimpleMarkovModel` you should see randomly-generated text such as that shown below:
+After you implement and test you should see randomly-generated text such as that shown below:
 
 ```
 size of final sequence = 177674
@@ -174,9 +172,6 @@ to you at meals, comfort your bed, And this fair
 If the method `Chat201Driver.getModel` returns
 either a `SimpleMarkovModel` or a `HashMarkovModel`, the output should be the same except for the timings.
 
-You'll implement the class `SimpleMarkovModel` to extend `BaseMarkovModel`. This means it _inherits_ the methods and `protected` instance 
-variables from that class. You're given a starting .java file that has constructors, but is missing one important method.
-
 ### Constructors
 
 Two constructors in `SimpleMarkovModel` correspond to the two constructors in `BaseMarkovModel`. These include a *default* consructor that has the same body as the default constructor
@@ -192,31 +187,72 @@ You must implement `getFollows` to find and return a `List<String>` that contain
 the parameter `List<String> context` in the training text. See the examples at the beginning of this document for an explanation. Your code
 will find every order-k (where k is `myModelSize`) sequence in the instance variable `myWordSequence` using the `subList` method and
 compare it for equality with `context`, building the returned `ArrayList` with Strings that follow
-the `context`. This means you find every context that *has a string that follows it*! You can model the code you write on `BaseMarkovModel.differentContexts` which finds every order-k subsequence
-and stores them in a local `HashSet` variable --- think carefully about whether the last context has a following string. It mya help to use concrete numbers: if `myWordSequence` has 10 elements, indexed 0-9. Then the last order-2 context is 2-word context at indexes 8 and 9. The last order-2 context with a string that follows is the 2-word context at indexes 7 and 8, with the string at index 9 following. 
+the `context`. This means you find every context that *has a string that follows it*! 
 
-You may choose to implement other methods inherited as part of answering analysis questions.
+**Model the code you write on `BaseMarkovModel.differentContexts` which finds** every order-k subsequence
+and stores them in a local `HashSet` variable --- think carefully about whether the last context has a following string. It may help to use concrete numbers: if `myWordSequence` has 10 elements, indexed 0-9. Then the last order-2 context is a 2-word context at indexes 8 and 9. The last order-2 context with a string that follows is the 2-word context at indexes 7 and 8, with the string at index 9 following. 
+
+You may choose to override/implement other methods inherited as part of answering analysis questions, but that's likely unnecessary.
 
 
 ### Running and Testing SimpleMarkovModel
 
-The `Chat201Driver` sets a `RANDOM_SEED` to initialize the random number generator. You are welcome to change that value to experiment 
-and play around with different random generations of text, but you should be sure to set it to 1234 for testing/submitting. 
-Note that *if you use the same value for `RANDOM_SEED` you should get the same random text as other students*.
-If not, something is likely wrong with your implementation.
-
-You can also test your `SimpleMarkovModel` class with the `MarkovGenerateTest` [JUnit tests](#junit-tests). 
+You can test your `SimpleMarkovModel` class with the `MarkovGenerateTest` [JUnit tests](#junit-tests). 
 Don't forget you will need to edit the code in method `getModel` to return a `SimpleMarkovModel` implementation when running your tests.
 
 Once you are confident that your `SimpleMarkovModel` code is correct, you are ready to continue with implementing `HashMarkovModel`.
 
-## JUnit Tests for both Models
+## JUnit Tests: how to run and use them
 
-You'll develop code in one class first: `SimpleMarkovModel`. This has a corresponding JUnit testing program. See
-the [details document](docs/details.md) for information on how to run `JUnit` tests in VSCode and how to read the test results. 
-You should *absolutely* make sure your code passes these tests when writing each method, i.e., before coding the next
-method. For example, after coding `getFollows` you should use JUnit to
-run the tests in `MarkovGenerateTest`. See the [details document](docs/details.md) for *how to run these tests.*
+You'll develop code in one class first: `SimpleMarkovModel`. This has a corresponding JUnit testing program.
+You should *absolutely* make sure your code passes these tests when implementing new methods.  For example, after coding `getFollows` you should use JUnit to
+run the tests in `MarkovGenerateTest`.
+
+To help test your `SimpleMarkovModel` and `HashMarkovModel` (Part 2, below) implementations, you are given some *unit tests* in the class
+`MarkovGenerateTest.java`  located in the `src` folder. 
+A unit test specifies a given input and asserts an expected outcome of running a method, 
+then runs your code to confirm that the expected outcome occurs. You can see the exact tests inside of 
+a Unit-test file, though it may be difficult to read/understand. The JUnit library used by these testing classes is a very 
+widely-used industry standard for unit testing.
+
+We use a major Java library called [**JUnit**](https://junit.org/junit5/) (specifically version 5) for creating and running these unit tests. 
+It is not part of the standard Java API, so we have supplied the requisite files `JAR` files (Java ARchive files) along with this project in a folder 
+called `lib` (you don't need to do anything with this).  
+
+Note that by default, `MarkovGenerateTest` is testing the `BaseMarkovModel` implementation, but all
+tests will fail since `getFollows` is not implemented. When you are ready to test your `HashMarkovModel` implementation, 
+you will want to change which model is created in the `getModel` method of `MarkovGenerateTest` at the position shown in the screenshow 
+below (if the image does not render for you, you can find them in the `figures` folder). You will also make similar modifications
+to the code in `Chat201Driver` since that class includes test methods.
+
+
+<div align="center">
+  <img src="figures/getmodel.png">
+</div>
+
+
+In order **to run these tests** inside VS Code, click the [Test Explorer](https://code.visualstudio.com/docs/java/java-testing#_test-explorer) (beaker) 
+icon on the left side of VS Code (it should be the lowest icon on the panel). You can expand the arrow 
+for `p1-markov-genai` and the default package to see the unit test: `MarkovGenerateTest` (some text may be cut off).
+You can click the run triangle next to each test package to run the tests. 
+ ee the screenshot example below. *Note that JUnit programs are run by the JUnit library and the beaker-icon, do not be running them as Java programs.* 
+You'll run the tests by clicking the triangle in the left panel, and you'll see the results in the _Test Results_ window 
+rather than in the Terminal or Debugger window in VSCode.
+
+For example, you can test all the tests in `MarkovGenerateTest` by hovering over that label in the _TestExplorer_ panel 
+which is active when you click the Beaker-Icon, and is shown in the screenshot below. You can also run each individual 
+unit test by hovering and clicking on each test's run triangle. The results of the tests are in the VSCode _TEST RESULTS_ panel, 
+not in the other panels where output is shown. Deciphering error JUnit error messages is not always straightforward -- 
+but when the tests pass? You'll get all green.
+
+<div align="center">
+  <img src="figures/matkovtest.png">
+</div>
+
+
+
+
+
 
 
 ## Coding Part 2: Developing the HashMarkovModel Class
@@ -290,50 +326,6 @@ Just like in `SimpleMarkovModel`, the `getFollows` method takes
 a `List<String>` object `context` as a parameter and should return a `List` of all the words (containing `String` objects) that follow the `context` in the training text. However, the `HashMarkovModel` implementation *must* be more efficient, as it does *not* loop over the training text, but should instead *simply lookup the context `List<String>` in the `myMap` instance variable intialized during `processTraining()`*, or return an empty `List` if the `context` is not a key in the map. 
 
 *This means that the `getFollows` method will be `O(1)` instead of `O(T)` where `T` is the size of the training text.*
-
-## JUnit Testing in P1-Markov-GenAI
-
-To help test your `SimpleMarkovModel` and `HashMarkovModel` implementations, you are given some *unit tests* in the class
-`MarkovGenerateTest.java`  located in the `src` folder. 
-A unit test specifies a given input and asserts an expected outcome of running a method, 
-then runs your code to confirm that the expected outcome occurs. You can see the exact tests inside of 
-a Unit-test file, though it may be difficult to read/understand. The JUnit library used by these testing classes is a very 
-widely-used industry standard for unit testing.
-
-We use a major Java library called [**JUnit**](https://junit.org/junit5/) (specifically version 5) for creating and running these unit tests. 
-It is not part of the standard Java API, so we have supplied the requisite files `JAR` files (Java ARchive files) along with this project in a folder 
-called `lib` (you don't need to do anything with this).  
-
-Note that by default, `MarkovGenerateTest` is testing the `BaseMarkovModel` implementation, but all
-tests will fail since `getFollows` is not implemented. When you are ready to test your `HashMarkovModel` implementation, 
-you will want to change which model is created in the `getModel` method of `MarkovGenerateTest` at the position shown in the screenshow 
-below (if the image does not render for you, you can find them in the `figures` folder). You will also make similar modifications
-to the code in `Chat201Driver` since that class includes test methods.
-
-
-<div align="center">
-  <img src="figures/getmodel.png">
-</div>
-
-
-In order **to run these tests** inside VS Code, click the [Test Explorer](https://code.visualstudio.com/docs/java/java-testing#_test-explorer) (beaker) 
-icon on the left side of VS Code (it should be the lowest icon on the panel). You can expand the arrow 
-for `p1-markov-genai` and the default package to see the unit test: `MarkovGenerateTest` (some text may be cut off).
-You can click the run triangle next to each test package to run the tests. 
- ee the screenshot example below. *Note that JUnit programs are run by the JUnit library and the beaker-icon, do not be running them as Java programs.* 
-You'll run the tests by clicking the triangle in the left panel, and you'll see the results in the _Test Results_ window 
-rather than in the Terminal or Debugger window in VSCode.
-
-For example, you can test all the tests in `MarkovGenerateTest` by hovering over that label in the _TestExplorer_ panel 
-which is active when you click the Beaker-Icon, and is shown in the screenshot below. You can also run each individual 
-unit test by hovering and clicking on each test's run triangle. The results of the tests are in the VSCode _TEST RESULTS_ panel, 
-not in the other panels where output is shown. Deciphering error JUnit error messages is not always straightforward -- 
-but when the tests pass? You'll get all green.
-
-<div align="center">
-  <img src="figures/matkovtest.png">
-</div>
-
 
 
 ## Analysis Questions
