@@ -219,7 +219,7 @@ We use a major Java library called [**JUnit**](https://junit.org/junit5/) (speci
 It is not part of the standard Java API, so we have supplied the requisite files `JAR` files (Java ARchive files) along with this project in a folder 
 called `lib` (you don't need to do anything with this).  
 
-Note that by default, `MarkovGenerateTest` is testing the `BaseMarkovModel` implementation, but all
+Note that by default, `MarkovGenerateTest` is testing the `SimpleMarkovModel` implementation, but 
 tests will fail since `getFollows` is not implemented. When you are ready to test your `HashMarkovModel` implementation, 
 you will want to change which model is created in the `getModel` method of `MarkovGenerateTest` at the position shown in the screenshow 
 below (if the image does not render for you, you can find them in the `figures` folder). You will also make similar modifications
@@ -227,15 +227,15 @@ to the code in `Chat201Driver` since that class includes test methods.
 
 
 <div align="center">
-  <img src="figures/getmodel.png">
+  <img src="../figures/getmodel.png">
 </div>
 
 
 In order **to run these tests** inside VS Code, click the [Test Explorer](https://code.visualstudio.com/docs/java/java-testing#_test-explorer) (beaker) 
 icon on the left side of VS Code (it should be the lowest icon on the panel). You can expand the arrow 
-for `p1-markov-genai` and the default package to see the unit test: `MarkovGenerateTest` (some text may be cut off).
+for `p1-markov` and the default package to see the unit test: `MarkovGenerateTest` (some text may be cut off).
 You can click the run triangle next to each test package to run the tests. 
- ee the screenshot example below. *Note that JUnit programs are run by the JUnit library and the beaker-icon, do not be running them as Java programs.* 
+See the screenshot example below. *Note that JUnit programs are run by the JUnit library and the beaker-icon, do not be running them as Java programs.* 
 You'll run the tests by clicking the triangle in the left panel, and you'll see the results in the _Test Results_ window 
 rather than in the Terminal or Debugger window in VSCode.
 
@@ -246,12 +246,8 @@ not in the other panels where output is shown. Deciphering error JUnit error mes
 but when the tests pass? You'll get all green.
 
 <div align="center">
-  <img src="figures/matkovtest.png">
+  <img src="../figures/matkovtest.png">
 </div>
-
-
-
-
 
 
 
@@ -259,9 +255,9 @@ but when the tests pass? You'll get all green.
 
 The `SimpleMarkovModel` class scans the entire training text each time a random word is generated. For the `HashMarkovModel` class you
 must scan the training text *once*, and store information in a `HashMap` so that random words can be
-generated in `O(1)` time rather than `O(T)` time where `T` is the number of tokens/words in the training text. See
-the [details document](docs/details.md) for full details on the `HashMap` instance variable and the methods you
-will need to `@Override` in this new, more efficient class. 
+generated in `O(1)` time rather than `O(T)` time where `T` is the number of tokens/words in the training text. 
+
+**Do NOT start Part 2 until after we have covered Maps on Monday, September 14 in class.**
 
 
 
@@ -271,12 +267,12 @@ This class *must extend* the class `BaseMarkovModel` just as the class `SimpleMa
 inherit the protected instance variables you'll see in `BaseMarkovModel`. Look at the class `BaseMarkovModel` for details.
 Note that you are *NOT GIVEN* a starting .java file for `HashMarkovModel.java`.
 
-You will need a `HashMap` instance variable that maps from `List<String>` values (contexts/the keys) to `List<String>` (the values). You may find this useful:
+You will need a `HashMap` instance variable that maps from `List<String>` (contexts/the keys) to `List<String>` (the values). You may find this useful:
 ```
     private HashMap<List<String>,List<String>> myMap;
 ```
 
-Note: the key `List<String>` represents a context. The value `List<String>` is each individual word that follows the context/key.
+**Note: the key `List<String>` represents a context. The value `List<String>` is each individual word that follows the context/key.**
 
 ### constructors
 
