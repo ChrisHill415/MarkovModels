@@ -56,7 +56,7 @@ and
 
 ## What is a Markov Model?
 
-Markov models are random models with the Markov property. In this project you can think of the Markov Model as a _small language model_. 
+Markov models are random models with the Markov property -- there's no memory, a random choice is based on the current state. In this project you can think of the Markov Model as a _small language model_. 
 You've heard about Duke/ChatGPT, Claude, Gemini and other _large language models_. In our case, we want to create a Markov model 
 for generating random text that looks similar to a training text. Your code will generate one random word at a time, and the 
 Markov property in our context means that the probabilities for that next word will be based on the previous words -- 
@@ -65,14 +65,11 @@ more precisely on 3 previous words in an order-3 Markov Model and the `k` previo
 An order-k Markov model uses length-three `List<String>` contexts to predict text: we sometimes call these *k-grams* where *k* 
 refers to the order. To generate random text based on a training model the following steps occur in the method `BaseMarkov.generate`:
 
- - select a random k-gram _context_ from the *training text* (the data we use to create our model by calling the 
+ - select a starting random k-gram _context_ from the *training text* (the data we use to create our model by calling the 
 method `getRandomContext`; we want to generate random text based on the training text).
- - look for instances of that k-gram  in the training text to calculate the probabilities corresponding to words that might follow the context by calling the method `randomNextString` which calls the method `getFollows` **which you must implement in `SimpleMarkovModel` **.
+ - look for every instance of that k-gram/context in the training text to calculate the probabilities corresponding to words that might follow the context by calling the method `randomNextString` which calls the method `getFollows` **which you must implement in `SimpleMarkovModel` **.
  - repeat the process with a new context by calling `createNewContext` which uses the last k-1 words from the previous context and 
-the newly generated word. 
-
-
-Continue in that fashion to create the desired number of random words. 
+the newly generated word to create the next context. 
 
 Here is a concrete example. Suppose we are using an order-2 Markov model with the following training text:
 
@@ -84,15 +81,14 @@ this test it is ok
 it is short but it is ok to be short
 ```
 
-We begin with finding a random k-gram, suppose we get `[it, is]`. 
+We begin with finding a random 2-gram, suppose we get `[it, is]`. 
 This appears 5 times in total, and is followed by `only`, `a`, `ok`, `short`, 
-and again by `ok` for the five occurences of `[it is]`. So the probability (in the training text) that `it is` is followed by `ok` is 2/5 or 40%, 
-and for the other words is 1/5 or 20%. To generate a random word following the 2-gram `[it, is]`, 
+and again by `ok` for the five occurences of `[it is]`. So the probability (in the training text) that `it is` is followed by `ok` is 2/5 or 40% and for the other words is 1/5 or 20%. To generate a random word following the 2-gram `[it, is]`, 
 we would therefore choose `ok` with 2/5 probability, or `only`, `a`, or `short` with 1/5 probability each.
 
 Rather than calculating these probabilities explicitly, your code will use these probabilities implicitly. 
 In particular, the `SimpleMarkovModel.getFollows` method you write must return a `List<String>` of *all* of the words that follow after a given context in the training text (including duplicates). This list is used by the method `BaseMarkovModel.randomNextString` to choose one of these words uniformly at random. 
-Words that more commonly follow will be selected with higher probability by virtue of these words being duplicated in the `List<String>`. 
+Words that more commonly follow will be selected with higher probability by virtue of these words being duplicated in the `List<String>` of following words. 
 In our example above with `[it is]` the `getFollows` method would return the `List<String>` `["only", "a", "ok", "short", "ok"]`.
 
 Suppose your code chooses `ok` as the next random word. Then the random text generated so far is `it is ok`, and the current
@@ -109,8 +105,7 @@ Of course, for a very small training text these probabilities may not be very me
 - Some static variables used in the main method are defined at the top of class, namely:
   - `TEXT_SIZE` is the number of words to be randomly generated.
   - `RANDOM_SEED` is the random seed used to initialize the random number generator. You should always get the same random text given a particular random seed and training text.
-  - `MODEL_ORDER` is the order of `List<String>`s that will be used.
-  - `PRINT_MODE` can be set to true or false based on whether you want the random text generated to be printed.
+  - `MODEL_ORDER` is the order of `List<String>`s that will be used as contexts.
   - The `dirname` defined at the beginning of the main method determines the folder/files that will be used for the training text. 
 By default it is set to `data/shakespeare`, meaning the text of eight works of Shakespeare is being used. Note that data files are located inside the data folder.
 - A `BaseMarkovModel` object named `model` is created. By default, it uses `SimpleMarkovModel` as the implementing class, a partial implementation of which is provided in the starter code.
@@ -140,7 +135,7 @@ zero size follows for [Fates,, we]
         at Chat201Driver.main(Chat201Driver.java:43)
 ```
 
-This throws an exception because the `Chat201Driver` code uses a `SimpleMarkovModel`and the inherited `BaseMarkovModel.getFollows` returns an empty list. You'll change this when you complete `SimpleMarkovModel`. 
+This throws an exception because the `Chat201Driver` code uses a `SimpleMarkovModel`which inherits `BaseMarkovModel.getFollows` that returns an empty list. You'll change this when you complete `SimpleMarkovModel`. 
 
 
 ## Coding Part 1: Developing the SimpleMarkovModel Class
@@ -169,7 +164,7 @@ to you at meals, comfort your bed, And this fair
 ----------------------------------
 ```
 
-If the method `Chat201Driver.getModel` returns
+The method `Chat201Driver.getModel` returns
 either a `SimpleMarkovModel` or a `HashMarkovModel`, the output should be the same except for the timings.
 
 ### Constructors
@@ -179,9 +174,9 @@ in `BaseMarkovModel`. Your parameterized constructor must have as its first line
 ```
    super(size);
 ```
-After this line include any code needed to initialize each instance variables you add (if any).
+After this line include any code needed to initialize each instance variables you add (if any). Both constructors are provided in the code you download.
 
-### getFollows
+### Method `getFollows`
 
 You must implement `getFollows` to find and return a `List<String>` that contains each individual string that follows _immediately after_
 the parameter `List<String> context` in the training text. See the examples at the beginning of this document for an explanation. Your code
