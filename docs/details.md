@@ -329,7 +329,7 @@ a `List<String>` object `context` as a parameter and should return a `List` of a
 Answer the following questions in your analysis. You'll submit your analysis as a separate PDF as a 
 separate assignment to Gradescope. Answering these questions will require you to run the driver code to 
 generate timing data and to reason about the algorithms and data structures you have implemented. 
-A template file for submitting your answers is [provided as a .docs file](p1-markov-analysis.docx).
+A template file for submitting your answers is [provided as a .docx file](p1-markov-analysis.docx).
 
 ### Working Together for Analysis
 
