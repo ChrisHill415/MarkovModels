@@ -20,10 +20,10 @@ public class Chat201Driver {
 	private static int RANDOM_SEED = 1234;
 
 	public static BaseMarkovModel getModel(int order){
-		return new BaseMarkovModel();
-		//return new SimpleMarkovModel(order);
+		return new SimpleMarkovModel(order);
 		//return new HashMarkovModel(order);
 	}
+	
 	public static void main(String[] args) throws IOException {
 		// Can change the training text here
 		String dirName = "data/shakespeare";
@@ -37,6 +37,7 @@ public class Chat201Driver {
 		double afterTraining = System.nanoTime();
 		double trainingTime = (afterTraining - beforeTraining)/1e9; 	
 		System.out.printf("\nTrained on text %s with # tokens = %d\n", dirName, model.tokenSize());
+		System.out.printf("Number of different contexts = %d\n",model.differentContexts());
 		System.out.printf("Training time = %2.3f seconds\n", trainingTime);
 
 		double beforeGenerating = System.nanoTime();
