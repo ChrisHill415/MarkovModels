@@ -13,6 +13,8 @@ For this project, you **start with the URL linked to course calendar**, [https:/
 
 **[This document details the workflow](https://coursework.cs.duke.edu/201fall26/resources-201/-/blob/main/projectWorkflow.md) for downloading the starter code for the project, updating your code on coursework using Git, and ultimately submitting to Gradescope for autograding.** We recommend that you read and follow the directions carefully this first time working on a project! While coding, we recommend that you periodically (perhaps when completing a method or small section) push your changes.
 
+## Completing the Coding Part of P1
+
 Here is a summary of what you will do in this project:
 - fork and clone (or download zip) the project files
 - run ChatGPTDriver which uses the provided `SimpleMarkovModel` class (and fails)
@@ -279,13 +281,13 @@ in `BaseMarkovModel`. Your parameterized constructor must have as its first line
 ```
    super(size);
 ```
-You'll also need to assign to the `HashMap` private instance variable.
+For example, see `SimpleMarkovModel` code you get. You'll also need to assign to the `HashMap` private instance variable.
 
 ### The processTraining() method
 
 You'll need to implement the `processTraining` method (which was not necessary in `SimpleMarkovModel`). This method
-is called in `BaseMarkovModel` as the last line of both `trainDirectory` and `trainText`. In `HashMarkovModel` the
-code you write will populate (*after clearing*) the instance variable `myMap`.
+is called in `BaseMarkovModel` as the last line of both `trainDirectory` and `trainText`. **In `HashMarkovModel` the
+code you write will populate (*after clearing*) the instance variable `myMap`.**
 
 Note: you *must clear the `HashMap` instance variable* (for example, if the name of the variable is `myMap`, 
 you can do this by calling `myMap.clear();`). This ensures that the map does not contain stale data if `processTraining()` 
@@ -293,13 +295,14 @@ is called multiple times on different training texts.
 
 You should loop through the words in `myWordSequence` *exactly once*.
 For each context `List<String>` of size `k`, where `k` is the order of the `HashMarkov` model, 
-you'll use the `List<String>` as a key, and add the String that follow it as an entry in the`ArrayList` object 
+you'll use the `List<String>` as a key, and add the String that follows it as an entry in the`ArrayList` object 
 that's the value associated with that `key` -- note that in the explanation above you'll see `List<String>` 
 as the type of the value associated with each `List<String>` key in the map. This is possibly confusing. The key in
 the map is a _context_, the order-k sequence/subList that is used to generate random text.  The value is
 the list of *individual strings* that follows this context in the training text.
 
-Your code *must create an `ArrayList` value to assign to each key in the map*, the `ArrayList` holds all the "next" words.
+Your code *must create an `ArrayList` value to assign to each key in the map*, the `ArrayList` holds all the "next" words. You
+typically only create the `ArrayList<String>` once, the first time a context/key is found when looping over all contexts.sss
 
 There are at least two code fragments on which you can model the code you're writing in `processTraining`. Both rely on using a loop eerily similar to the loop you wrote in `SimpleMarkovModel.getFollows` which found every context.  As in that code, you can use `subList` to create a context. Alternatively, you could create the first context explicitly before any loop using `myWordSequence.subList(0,myModelSize)`. Then, in the body of your loop, you can create the next context by calling `createNewContext` as is done in `BaseMarkov.generate`.
 
@@ -326,7 +329,7 @@ a `List<String>` object `context` as a parameter and should return a `List` of a
 Answer the following questions in your analysis. You'll submit your analysis as a separate PDF as a 
 separate assignment to Gradescope. Answering these questions will require you to run the driver code to 
 generate timing data and to reason about the algorithms and data structures you have implemented. 
-We will include a template file for submitting your answers.
+A template file for submitting your answers is [provided as a .docs file](p1-markov-analysis.docx).
 
 ### Working Together for Analysis
 
@@ -386,8 +389,7 @@ So you should have a total of at least 9 data points; use these to fill out a ta
 *Suggestions*: You will likely get the clearest data if you include very different values for $`T`$ and $`N`$, 
 and preferably larger values -- see the table of sizes above to help you choose folders/text files you'll use. 
 You can set $`N`$ directly to much larger values by changing `TEXT_SIZE`, for example to 1,000 or 10,000. 
-When doing so, you can set `PRINT_MODE` to `false` in `Chat201Driver` to avoid having a large amount of text printed to your 
-terminal. Note that `SimpleMarkovModel` is not necessarily an efficient implementation, 
+Note that `SimpleMarkovModel` is not necessarily an efficient implementation, 
 so it may take a long time to run with large $`T`$ and $`N`$. You do not need to run anything for multiple minutes 
 just for data collection for this assignment.  
 
@@ -412,7 +414,7 @@ and machine learning (ML) called *generative models* for *natural language proce
  "highly autonomous systems that outperform humans at most economically valuable work—benefits all of humanity." 
 
 GPT is not, however, open-source, meaning that the underlying source code of the model is not freely available and the model is only 
-accessible via API calls. Read this [short article from Nature about DeepSeek, an open-source LLM](docs/deepseek-nature.pdf). 
+accessible via API calls. Read this [short article from Nature about DeepSeek, an open-source LLM](deepseek-nature.pdf). 
 
 Answer the following related questions **without using an LLM**:
 - What do you think of OpenAI's stated mission? In particular, do you think that "highly autonomous systems that outperform humans at most economically valuable work" can benefit all of humanity? Why or why not?
