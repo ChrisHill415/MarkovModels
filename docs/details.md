@@ -127,6 +127,7 @@ because the code in `BaseMarkovModel.getFollows` does *not* work. After completi
 size of final sequence = 177690
 
 Trained on text data/shakespeare with # tokens = 177674
+Number of different contexts = 117189
 Training time = 0.101 seconds
 Exception in thread "main" java.lang.RuntimeException: 
 zero size follows for [Fates,, we]
@@ -151,6 +152,7 @@ After you implement and test you should see randomly-generated text such as that
 size of final sequence = 177674
 
 Trained on text data/shakespeare with # tokens = 177674
+Number of different contexts = 117189
 Training time = 0.106 seconds
 Generated N=1000 random words with order 2 Markov Model
 Generating time = 1.522 seconds
