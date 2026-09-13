@@ -196,7 +196,7 @@ You may choose to override/implement other methods inherited as part of answerin
 
 ### Running and Testing SimpleMarkovModel
 
-You can test your `SimpleMarkovModel` class with the `MarkovGenerateTest` [JUnit tests](#junit-tests). 
+You can test your `SimpleMarkovModel` class with the `MarkovGenerateTest` JUnit tests (explained just.below).
 Don't forget you will need to edit the code in method `getModel` to return a `SimpleMarkovModel` implementation when running your tests.
 
 Once you are confident that your `SimpleMarkovModel` code is correct, you are ready to continue with implementing `HashMarkovModel`.
