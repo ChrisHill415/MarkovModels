@@ -16,7 +16,7 @@ public class MarkovGenerateTest {
 
     private BaseMarkovModel getModel(int order) {
         // Choose which implementation to test here
-        return new SimpleMarkovModel(order);
+        return new HashMarkovModel(order);
         //return new HashMarkovModel(order);
     }
 

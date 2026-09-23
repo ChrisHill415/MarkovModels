@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -18,6 +20,21 @@ public class SimpleMarkovModel extends BaseMarkovModel  {
         this(3);
     }
 
+    @Override 
+    protected List<String> getFollows(List<String> context) {
+        List<String> list = new ArrayList<>();
+
+        for (int i = 0; i < myWordSequence.size() -myModelSize; i++) 
+            {
+                if(myWordSequence.subList(i,i+myModelSize).equals(context))
+                {
+                    list.add(myWordSequence.get(i+myModelSize));
+                }
+            }
+
+        return list;
+    }
+
     public static void main(String[] args) throws IOException {
         SimpleMarkovModel mm = new SimpleMarkovModel(2);
         String dirName = "data/shakespeare";
@@ -30,4 +47,6 @@ public class SimpleMarkovModel extends BaseMarkovModel  {
         System.out.printf("size of generated text = %d\n",text.length());
         System.out.printf("# different contexts possible = %d\n",mm.differentContexts());
     }
+
+
 }
