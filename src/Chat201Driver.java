@@ -15,18 +15,18 @@ import java.io.IOException;
 
 public class Chat201Driver {
 	
-	private static int TEXT_SIZE = 1000;
+	private static int TEXT_SIZE = 100;
 	private static int MODEL_ORDER = 2;
 	private static int RANDOM_SEED = 1234;
 
 	public static BaseMarkovModel getModel(int order){
-		return new SimpleMarkovModel(order);
-		//return new HashMarkovModel(order);
+		//return new SimpleMarkovModel(order);
+		return new HashMarkovModel(order);
 	}
 	
 	public static void main(String[] args) throws IOException {
 		// Can change the training text here
-		String dirName = "data/shakespeare";
+		String dirName = "data/onefile";
 
 		// change code in getModel as warranted
 		BaseMarkovModel model = getModel(MODEL_ORDER);
